@@ -525,6 +525,47 @@ footer a:hover{color:var(--accent-2)}
 .band .b1{background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;padding:14px}
 .band .b1 b{font-family:var(--fh);color:var(--brand-2);font-size:1.1rem}
 @media(max-width:880px){.lang-layout{grid-template-columns:1fr}.toc{position:static}.chart-wrap{grid-template-columns:1fr}.rate-grid{grid-template-columns:1fr}.conv-row{grid-template-columns:1fr;gap:10px}.conv-row .swap{justify-self:center;transform:rotate(90deg)}}
+/* ===== dark-mode fix: hero assessment card stays readable (sits on dark hero) ===== */
+.assess{background:#fff}
+.assess h3{color:#0f2444}
+.assess label{color:#33415c}
+.assess input,.assess select{color:#0f2444;background:#fff;border-color:#d8e2f0}
+.assess input::placeholder{color:#9aa7bd}
+
+/* ===== overflow guard ===== */
+html{overflow-x:hidden}
+
+/* ===== university photo gallery ===== */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
+.photo{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:3/2;background:linear-gradient(135deg,var(--bg-soft-2),var(--bg-soft));border:1px solid var(--line);display:grid;place-items:center}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:.45s}
+.photo.show img{opacity:1}
+.photo .pv{position:relative;z-index:2;font-size:.74rem;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 11px;border-radius:8px;cursor:pointer;transition:.2s}
+.photo .pv:hover{background:var(--brand-2);color:#fff;border-color:var(--brand-2)}
+.photo.show .pv{display:none}
+.photo .pcap{position:absolute;bottom:6px;left:6px;z-index:2;font-size:.64rem;background:rgba(0,0,0,.6);color:#fff;padding:2px 7px;border-radius:6px}
+
+/* ===== expandable sections (view more / housing) ===== */
+.exp{display:none;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:12px;background:var(--bg-soft);animation:vin .35s}
+.exp.open{display:block}
+.exp h5{font-family:var(--fh);color:var(--ink);margin:14px 0 6px;font-size:1rem}
+.exp ul{margin:0 0 8px 18px}.exp li{margin-bottom:5px;font-size:.9rem}
+.exp .pg{border-top:1px dashed var(--line);margin-top:14px;padding-top:12px}
+.pgtag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.5px;color:var(--brand-2);background:rgba(23,99,199,.1);padding:3px 9px;border-radius:7px;margin-bottom:6px}
+.house{border:1px solid var(--line);border-radius:11px;padding:14px;margin-bottom:10px;background:var(--surface)}
+.house h6{font-family:var(--fh);font-size:.95rem;color:var(--ink);margin-bottom:4px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.tag2{font-size:.66rem;font-weight:700;padding:2px 9px;border-radius:20px;white-space:nowrap}
+.tag2.av{background:rgba(22,163,74,.14);color:#16a34a}
+.tag2.bk{background:rgba(220,38,38,.14);color:#dc2626}
+.house .rent{display:flex;gap:18px;flex-wrap:wrap;margin:6px 0;font-size:.85rem}
+.house .rent b{color:var(--brand-2)}
+.house .acts{display:flex;gap:10px;margin-top:8px;flex-wrap:wrap}
+.house .acts a,.house .acts button{font-size:.78rem;font-weight:600;padding:6px 11px;border-radius:8px;border:1px solid var(--line);background:var(--bg-soft);color:var(--ink);cursor:pointer;text-decoration:none;transition:.2s}
+.house .acts a:hover,.house .acts button:hover{border-color:var(--brand-2);color:var(--brand-2)}
+.house .himg{margin-top:10px;display:none}
+.house .himg.show{display:block;animation:vin .3s}
+.house .himg img{width:100%;max-height:230px;object-fit:cover;border-radius:9px}
+@media(max-width:680px){.gallery{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -542,7 +583,7 @@ footer a:hover{color:var(--accent-2)}
 <div class="topbar">
   <div class="wrap">
     <div class="ti">
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> arafathrahman711@gmail.com</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg> Study in Korea &amp; Australia</span>
       <span class="hide-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Sat–Thu: 10:00 – 18:00</span>
       <span class="hide-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Bangladesh</span>
     </div>
@@ -1698,6 +1739,13 @@ function showDetail(u,countryLabel,kind){
     +'</tbody></table>'
     +'<h4>🗣️ Language-based Scholarship / Entry</h4>'+langTable
     +'<p class="disc">'+contNote+'</p>'
+    +'<h4>📷 Campus Photos</h4>'+photosHTML(u)
+    +'<div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">'
+      +'<button class="btn btn-ghost sm" onclick="toggleExp(\'moreDet\',this)">📖 View More Details</button>'
+      +'<button class="btn btn-ghost sm" onclick="toggleExp(\'housing\',this)">🏠 Nearby Housing &amp; Rent</button>'
+    +'</div>'
+    +'<div class="exp" id="moreDet">'+moreHTML(u,kind)+'</div>'
+    +'<div class="exp" id="housing">'+housingHTML(u,kind)+'</div>'
     +'<p class="disc">⚠️ Scholarship &amp; tuition figures are <b>indicative</b> and vary by department, year and applicant. Always confirm the latest details on the official university website or with our advisors.</p>'
     +'<div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap"><button class="btn btn-accent" onclick="closeDetail();go(\'book\')">📅 Book a Meeting About '+u.abbr+'</button>'
     +'<a class="btn btn-ghost" href="'+u.web+'" target="_blank" rel="noopener">Visit Website ↗</a></div></div>';
@@ -1908,6 +1956,89 @@ SEARCH_INDEX.push({cat:"Page",title:"Currency Converter",desc:"Live USD/KRW/AUD/
 SEARCH_INDEX.push({cat:"Page",title:"IELTS Guide",desc:"Full A–Z IELTS guide: format, bands, scores",route:"ielts",icon:"book"});
 SEARCH_INDEX.push({cat:"Page",title:"TOPIK Guide",desc:"Full A–Z TOPIK guide: levels, format, scores",route:"topik",icon:"book"});
 for(var ai=0;ai<AUS_UNIS.length;ai++){var au=AUS_UNIS[ai];SEARCH_INDEX.push({cat:"University",title:au.name,desc:au.city+" • "+au.type+" • "+au.feeKRW,route:"australia",icon:"cap",key:(au.name+" "+au.city+" "+au.type+" "+au.rank+" "+au.strengths+" australia").toLowerCase()});}
+
+/* =========================================================
+   PHOTOS + VIEW MORE + HOUSING (per university, templated)
+   ========================================================= */
+function toggleExp(id,btn){var e=$(id);var open=e.classList.toggle("open");
+  if(btn){if(id==="housing")btn.textContent=open?"▲ Hide Housing":"🏠 Nearby Housing & Rent";else btn.textContent=open?"▲ Hide Details":"📖 View More Details";}
+  if(open)setTimeout(function(){e.scrollIntoView({behavior:"smooth",block:"nearest"});},80);
+}
+function photosHTML(u){
+  var cats=["Campus","Campus","Campus","Campus","Facilities","Facilities","City Area","City Area"],cells="";
+  for(var i=0;i<cats.length;i++){var seed=encodeURIComponent((u.abbr||u.name)+"pic"+i);
+    cells+='<div class="photo"><img loading="eager" src="https://picsum.photos/seed/'+seed+'/640/420" alt="'+u.name+' '+cats[i]+'"><button class="pv" onclick="this.parentNode.classList.add(\'show\')">👁 View Image</button><span class="pcap">'+cats[i]+' '+((i%4)+1)+'</span></div>';
+  }
+  return '<div class="gallery">'+cells+'</div><p class="disc">Representative images (pre-loaded — tap “View Image” to reveal). For the university\'s real 4K campus photos & video tour, open its official website below.</p>';
+}
+function moreHTML(u,kind){
+  var coursesList=u.courses.map(function(c){return c.n;}).join(", ");
+  var reqList=u.req.map(function(r){return "<li>"+r+"</li>";}).join("");
+  var work = kind==="au"
+    ? '<h5>Work rights</h5><ul><li>Work up to <b>48 hours / fortnight</b> during semester, unlimited during breaks</li><li>Post-study work visa (Subclass 485) — <b>2–4 years</b> after graduating</li></ul>'
+    : '<h5>Work rights (Korea)</h5><ul><li>Part-time work allowed with permission (≈<b>20 hrs/week</b> in term, more in holidays)</li><li>A higher TOPIK level unlocks more work hours & better job options</li></ul>';
+  var p1='<div class="pg"><span class="pgtag">Page 1 — Campus & Facilities</span>'
+    +'<p>'+u.name+' is located in '+u.city+' and provides a modern campus environment with strong support for international students through a dedicated global/int\'l office (visa, housing & academic help).</p>'
+    +'<h5>Typical facilities</h5><ul><li>Central & faculty libraries with 24/7 study zones</li><li>On-campus dormitories & student dining halls</li><li>Sports complex, gym & 100+ student clubs</li><li>Career centre, health clinic & language-exchange programs</li></ul></div>';
+  var p2='<div class="pg"><span class="pgtag">Page 2 — Admission Process & Documents</span>'
+    +'<h5>Step-by-step</h5><ul><li>1. Choose your program ('+coursesList+' …)</li><li>2. Prepare documents & language scores</li><li>3. Submit the online application + fee</li><li>4. Receive the admission letter (notice of admission)</li><li>5. Apply for the student visa ('+(kind==="au"?"Subclass 500":"D-2 / D-4")+') & pay tuition</li></ul>'
+    +'<h5>Required documents</h5><ul>'+reqList+'<li>Valid passport, photos & application form</li><li>Notarised / apostilled certificates & transcripts</li><li>Financial proof (bank statement / sponsor)</li></ul>'
+    +'<p style="margin-top:6px"><b>Intakes:</b> '+u.intakes+' &nbsp;•&nbsp; <b>Deadlines:</b> '+u.deadlines+'</p></div>';
+  var p3='<div class="pg"><span class="pgtag">Page 3 — Student Life, Work & Careers</span>'
+    +'<p><b>Language of instruction:</b> '+u.lang+'. Buddy/mentor programs and extra language classes help new international students settle in.</p>'
+    +work
+    +'<h5>Careers & strengths</h5><p>'+u.strengths+' The career centre runs internships, job fairs and industry links to support graduate employment.</p></div>';
+  return '<span class="pgtag">More about '+u.name+'</span>'+p1+p2+p3
+    +'<div style="margin-top:12px"><a class="btn btn-ghost sm" href="'+u.web+'" target="_blank" rel="noopener">🌐 Visit Official Website ↗</a></div>'
+    +'<p class="disc">These are general, guidance-level descriptions. Always confirm exact courses, fees & dates on the official website (it is the source of truth).</p>';
+}
+function rentData(u,kind){
+  var city=u.city.split(",")[0].split(" & ")[0];
+  if(kind==="au"){
+    return [
+      {t:"On-campus Student Residence",good:"AUD 380–520 / wk",normal:"AUD 280–360 / wk",note:"Furnished rooms in or beside campus; bills & wifi included. Safest choice for your first year.",q:city+" on campus student accommodation"},
+      {t:"Purpose-Built Student Studio (PBSA)",good:"AUD 450–650 / wk",normal:"AUD 320–430 / wk",note:"Private self-contained studio (UniLodge / Scape style) with gym, study rooms & 24/7 security.",q:city+" student studio PBSA"},
+      {t:"Shared Apartment (your own room)",good:"AUD 320–420 / wk",normal:"AUD 220–300 / wk",note:"Own bedroom in a 2–4 bed flat shared with other students; bills split — great value.",q:city+" shared apartment student room"},
+      {t:"Homestay (meals included)",good:"AUD 360–420 / wk",normal:"AUD 300–340 / wk",note:"Live with a local family with meals — ideal for new arrivals adjusting to Australia.",q:city+" student homestay"},
+      {t:"Private Studio / 1-Bed Unit",good:"AUD 500–700 / wk",normal:"AUD 380–480 / wk",note:"Entire unit for full privacy; usually needs a 4-week bond. Higher cost.",q:city+" one bedroom unit rent"},
+      {t:"Share House (room in a house)",good:"AUD 280–380 / wk",normal:"AUD 180–260 / wk",note:"Cheapest common option — a room in a larger share house, often a bit further from campus.",q:city+" share house room rent"}
+    ];
+  }
+  if(city==="Seoul"){
+    return [
+      {t:"Officetel Studio (premium one-room)",good:"₩650,000–850,000 / mo",normal:"₩450,000–600,000 / mo",note:"Modern furnished studio with security & lift; deposit ≈ ₩5–10M. Best comfort in central Seoul.",q:"Seoul officetel one room rent foreigner"},
+      {t:"One-room Villa (standard studio)",good:"₩500,000–650,000 / mo",normal:"₩380,000–480,000 / mo",note:"Typical student one-room with kitchenette & bathroom; deposit ≈ ₩3–5M.",q:"Seoul one room villa monthly rent"},
+      {t:"University Dormitory (on-campus)",good:"₩350,000–550,000 / mo",normal:"₩250,000–350,000 / mo",note:"Cheapest & safest; single or shared rooms, often with a meal plan. Limited seats — apply early.",q:u.name+" international dormitory"},
+      {t:"Goshiwon (compact single room)",good:"₩400,000–500,000 / mo",normal:"₩300,000–380,000 / mo",note:"Small private room with shared kitchen; usually NO deposit — good for budget & short-term.",q:"Seoul goshiwon monthly no deposit"},
+      {t:"Share House (private room)",good:"₩450,000–600,000 / mo",normal:"₩350,000–450,000 / mo",note:"Private room in a shared house with other international students; friendly community feel.",q:"Seoul share house foreigners"},
+      {t:"Two-room Apartment (sharing)",good:"₩900,000–1,200,000 / mo (split)",normal:"₩700,000–900,000 / mo (split)",note:"Share a 2-room flat with a friend to cut costs; deposit ≈ ₩10M+.",q:"Seoul two room apartment rent"}
+    ];
+  }
+  return [
+    {t:"University Dormitory (on-campus)",good:"₩300,000–450,000 / mo",normal:"₩180,000–300,000 / mo",note:"Most affordable & convenient; single/shared rooms with meal plans. Apply early — high demand.",q:u.name+" dormitory international"},
+    {t:"One-room Studio (off-campus)",good:"₩380,000–500,000 / mo",normal:"₩280,000–380,000 / mo",note:"Furnished one-room near campus; deposit ≈ ₩2–4M. The most common student choice.",q:city+" one room studio rent"},
+    {t:"Goshiwon (compact room)",good:"₩300,000–400,000 / mo",normal:"₩220,000–300,000 / mo",note:"Tiny private room with shared kitchen; usually no deposit — the cheapest quick option.",q:city+" goshiwon monthly"},
+    {t:"Officetel (premium studio)",good:"₩450,000–600,000 / mo",normal:"₩350,000–450,000 / mo",note:"Newer furnished studio with security; deposit ≈ ₩3–6M.",q:city+" officetel rent"},
+    {t:"Share House (private room)",good:"₩350,000–450,000 / mo",normal:"₩250,000–350,000 / mo",note:"Private room in a shared student house; bills often included.",q:city+" share house students"},
+    {t:"Two-room (sharing with a friend)",good:"₩600,000–800,000 / mo (split)",normal:"₩450,000–600,000 / mo (split)",note:"Split a 2-room flat to save money; deposit required.",q:city+" two room apartment rent"}
+  ];
+}
+function housingHTML(u,kind){
+  var arr=rentData(u,kind);
+  var rows=arr.map(function(h,idx){
+    var seed=encodeURIComponent((u.abbr||u.name)+"house"+idx);
+    return '<div class="house"><h6>'+h.t+' <span class="tag2 av">● Available</span></h6>'
+      +'<div class="rent"><span>👍 Good place: <b>'+h.good+'</b></span><span>💡 Standard: <b>'+h.normal+'</b></span></div>'
+      +'<p style="font-size:.85rem">'+h.note+'</p>'
+      +'<div class="acts"><button onclick="this.closest(\'.house\').querySelector(\'.himg\').classList.toggle(\'show\')">🖼 View Image</button>'
+      +'<a href="https://www.google.com/search?q='+encodeURIComponent(h.q)+'" target="_blank" rel="noopener">🌐 Visit Website ↗</a></div>'
+      +'<div class="himg"><img loading="eager" src="https://picsum.photos/seed/'+seed+'/720/420" alt="'+h.t+'"></div></div>';
+  }).join("");
+  return '<span class="pgtag">Nearby Housing & Rent — '+u.city+'</span>'
+    +'<p style="font-size:.85rem;margin:6px 0 12px">Indicative monthly housing near <b>'+u.name+'</b>. <b>Good place</b> = newer / closer / furnished; <b>Standard</b> = typical budget option.'+(kind==="au"?" Rents are usually quoted per week in Australia.":" Korea often needs a deposit (key money) on top of monthly rent.")+'</p>'
+    +rows
+    +'<p class="disc">Prices are indicative and change with location, season & exchange rate. Tap “Visit Website” for current real listings.</p>';
+}
 
 /* =========================================================
    NAV hook + init
