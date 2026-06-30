@@ -566,6 +566,34 @@ html{overflow-x:hidden}
 .house .himg.show{display:block;animation:vin .3s}
 .house .himg img{width:100%;max-height:230px;object-fit:cover;border-radius:9px}
 @media(max-width:680px){.gallery{grid-template-columns:repeat(2,1fr)}}
+/* ===== LIQUID GLASS (CSS, mobile-safe with opaque fallback) ===== */
+.lg-glass{position:relative;overflow:hidden;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.5);box-shadow:0 10px 34px rgba(15,40,90,.16),inset 0 1px 0 rgba(255,255,255,.65)}
+html[data-theme="dark"] .lg-glass{background:rgba(18,29,54,.62);border-color:rgba(255,255,255,.14);box-shadow:0 10px 34px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.18)}
+@supports ((-webkit-backdrop-filter:blur(2px)) or (backdrop-filter:blur(2px))){
+  .lg-glass{background:rgba(255,255,255,.45);backdrop-filter:blur(18px) saturate(185%);-webkit-backdrop-filter:blur(18px) saturate(185%)}
+  html[data-theme="dark"] .lg-glass{background:rgba(18,29,54,.4)}
+}
+.lg-glass>*{position:relative;z-index:1}
+.lg-glass::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;background:linear-gradient(135deg,rgba(255,255,255,.55),transparent 45%);opacity:.5}
+.lg-glass::after{content:"";position:absolute;top:-60%;left:-45%;width:55%;height:220%;pointer-events:none;z-index:0;transform:rotate(8deg);background:linear-gradient(115deg,transparent,rgba(255,255,255,.35),transparent);transition:left .8s cubic-bezier(.2,.7,.3,1)}
+.lg-glass:hover::after{left:135%}
+
+/* glassy sticky header */
+header.site{background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%)}
+html[data-theme="dark"] header.site{background:rgba(12,20,38,.82)}
+
+/* glassy buttons (liquid) */
+.btn-glass{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.4);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
+.btn-glass:hover{background:rgba(255,255,255,.28);transform:translateY(-3px)}
+
+/* overflow guards (#3) */
+.steps{overflow:hidden}
+.acct-menu,.drop{max-width:calc(100vw - 28px)}
+body{max-width:100%}
+
+/* logo image (auto-swaps in when logo.png exists) */
+.brand .mk img,footer .mk img{width:100%;height:100%;object-fit:contain;border-radius:11px;display:block}
+.mk.haslogo{background:#fff!important;padding:3px}
 </style>
 </head>
 <body>
@@ -1002,10 +1030,10 @@ html{overflow-x:hidden}
         <button class="btn btn-ghost sm" id="refreshRates">↻ Refresh now</button>
       </div>
       <div class="rate-grid" id="rateGrid">
-        <div class="rate"><div class="pair"><span class="fl">🇺🇸</span> USD → BDT</div><div class="val" id="r_USD">…</div><div class="sub">1 US Dollar in Bangladeshi Taka</div></div>
-        <div class="rate"><div class="pair"><span class="fl">🇰🇷</span> KRW → BDT</div><div class="val" id="r_KRW">…</div><div class="sub">1 Korean Won in Bangladeshi Taka</div></div>
-        <div class="rate"><div class="pair"><span class="fl">🇦🇺</span> AUD → BDT</div><div class="val" id="r_AUD">…</div><div class="sub">1 Australian Dollar in Bangladeshi Taka</div></div>
-        <div class="rate"><div class="pair"><span class="fl">🇨🇦</span> CAD → BDT</div><div class="val" id="r_CAD">…</div><div class="sub">1 Canadian Dollar in Bangladeshi Taka</div></div>
+        <div class="rate lg-glass"><div class="pair"><span class="fl">🇺🇸</span> USD → BDT</div><div class="val" id="r_USD">…</div><div class="sub">1 US Dollar in Bangladeshi Taka</div></div>
+        <div class="rate lg-glass"><div class="pair"><span class="fl">🇰🇷</span> KRW → BDT</div><div class="val" id="r_KRW">…</div><div class="sub">1 Korean Won in Bangladeshi Taka</div></div>
+        <div class="rate lg-glass"><div class="pair"><span class="fl">🇦🇺</span> AUD → BDT</div><div class="val" id="r_AUD">…</div><div class="sub">1 Australian Dollar in Bangladeshi Taka</div></div>
+        <div class="rate lg-glass"><div class="pair"><span class="fl">🇨🇦</span> CAD → BDT</div><div class="val" id="r_CAD">…</div><div class="sub">1 Canadian Dollar in Bangladeshi Taka</div></div>
       </div>
       <div class="conv" style="margin-top:26px">
         <h3 style="margin-bottom:16px">Quick Converter</h3>
@@ -1243,7 +1271,7 @@ html{overflow-x:hidden}
 <!-- ===== AUTH MODAL ===== -->
 <div class="mwrap" id="authModal">
   <div class="mbg" onclick="closeAuth()"></div>
-  <div class="modal auth-card">
+  <div class="modal auth-card lg-glass">
     <button class="mx" onclick="closeAuth()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     <div class="mb" style="padding:30px">
       <div style="text-align:center;margin-bottom:18px">
@@ -1866,8 +1894,12 @@ function configNotice(){aMsg("🔧 Sign-in is built and ready. To go live, add y
 
 function oauth(provider){
   if(!sb){configNotice();return;}
+  if(location.protocol!=="http:"&&location.protocol!=="https:"){
+    aMsg("🔗 "+provider.charAt(0).toUpperCase()+provider.slice(1)+" sign-in must run from your published web link (https://…). It can't work from a downloaded/offline file. Open your GitHub Pages site and try again.","info");return;
+  }
+  aMsg("Redirecting to "+provider+"…","info");
   sb.auth.signInWithOAuth({provider:provider,options:{redirectTo:location.origin+location.pathname}})
-    .then(function(r){if(r.error)aMsg(r.error.message+" — make sure the "+provider+" provider is enabled in Supabase.","err");})
+    .then(function(r){if(r.error)aMsg(r.error.message+" — check that "+provider+" is enabled and your site URL is in Supabase → Authentication → URL Configuration.","err");})
     .catch(function(e){aMsg(String(e),"err");});
 }
 function protonSignup(){
@@ -2062,6 +2094,11 @@ $("cvSwap").onclick=function(){var f=$("cvFrom"),t=$("cvTo"),tmp=f.value;f.value
 $("ausSearch").addEventListener("input",renderAus);
 
 buildAusChips();renderAus();
+/* auto-swap brand logo to logo.png if present in the site folder (header + footer) */
+(function(){var probe=new Image();probe.onload=function(){
+  var mks=document.querySelectorAll(".brand .mk, footer .mk");
+  for(var i=0;i<mks.length;i++){mks[i].classList.add("haslogo");mks[i].innerHTML='<img src="logo.png" alt="IEVS logo">';}
+};probe.src="logo.png";})();
 if((location.hash||"").indexOf("currency")>=0)startCurrency();
 </script>
 
