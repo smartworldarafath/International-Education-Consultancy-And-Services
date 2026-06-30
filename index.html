@@ -419,6 +419,112 @@ footer a:hover{color:var(--accent-2)}
 }
 .reveal{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.2,.7,.3,1)}
 .reveal.in{opacity:1;transform:none}
+
+/* ===== NAV DROPDOWN ===== */
+.has-drop{position:relative}
+.drop{position:absolute;top:100%;left:0;min-width:220px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:8px;opacity:0;visibility:hidden;transform:translateY(8px);transition:.22s;z-index:50}
+.has-drop:hover .drop,.has-drop.open .drop{opacity:1;visibility:visible;transform:none}
+.drop a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;font-size:.9rem}
+.drop a:hover{background:var(--bg-soft)}
+.drop a svg{width:17px;height:17px;color:var(--brand-2)}
+.caret{transition:.25s}.has-drop:hover .caret{transform:rotate(180deg)}
+
+/* ===== ACCOUNT ===== */
+.acct{position:relative}
+.acct-btn{display:flex;align-items:center;gap:8px;cursor:pointer;border:1px solid var(--line);background:var(--surface);border-radius:30px;padding:5px 12px 5px 5px}
+.acct-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;display:grid;place-items:center;font-family:var(--fh);font-weight:700;font-size:.85rem}
+.acct-name{font-size:.85rem;font-weight:600;color:var(--ink);max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acct-menu{position:absolute;right:0;top:110%;min-width:200px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:8px;display:none;z-index:60}
+.acct-menu.open{display:block;animation:popin .2s}
+.acct-menu .em{padding:8px 12px;font-size:.8rem;color:var(--muted);border-bottom:1px solid var(--line);margin-bottom:6px;word-break:break-all}
+.acct-menu a{display:block;padding:9px 12px;border-radius:8px;font-size:.9rem;cursor:pointer}
+.acct-menu a:hover{background:var(--bg-soft)}
+@keyframes popin{from{opacity:0;transform:translateY(-6px) scale(.97)}to{opacity:1;transform:none}}
+
+/* ===== AUTH MODAL ===== */
+.auth-card{max-width:440px}
+.auth-tabs{display:flex;background:var(--bg-soft);border-radius:11px;padding:5px;margin-bottom:20px}
+.auth-tabs button{flex:1;border:none;background:none;padding:10px;border-radius:8px;font-family:var(--fh);font-weight:600;font-size:.92rem;color:var(--muted);cursor:pointer;transition:.25s}
+.auth-tabs button.active{background:var(--surface);color:var(--brand-2);box-shadow:var(--shadow-sm)}
+.prov{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px;border:1px solid var(--line);border-radius:11px;background:var(--surface);color:var(--ink);font-family:var(--fh);font-weight:600;font-size:.92rem;cursor:pointer;transition:.22s;margin-bottom:10px}
+.prov:hover{background:var(--bg-soft);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.prov svg,.prov img{width:20px;height:20px}
+.auth-div{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:.8rem;margin:14px 0}
+.auth-div::before,.auth-div::after{content:"";flex:1;height:1px;background:var(--line)}
+.auth-more{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.auth-more.open{max-height:200px}
+.auth-toggle{text-align:center;font-size:.85rem;color:var(--brand-2);cursor:pointer;margin-top:6px;font-weight:600}
+.auth-field{margin-bottom:12px}
+.auth-field label{display:block;font-size:.83rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+.auth-field input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-family:var(--fb);font-size:.93rem;color:var(--ink);background:var(--surface);outline:none;transition:.2s}
+.auth-field input:focus{border-color:var(--brand-2);box-shadow:0 0 0 3px rgba(23,99,199,.15)}
+.auth-msg{font-size:.85rem;padding:10px 12px;border-radius:9px;margin-bottom:12px;display:none}
+.auth-msg.show{display:block;animation:vin .3s}
+.auth-msg.err{background:rgba(220,38,38,.1);color:#dc2626;border:1px solid rgba(220,38,38,.3)}
+.auth-msg.ok{background:rgba(22,163,74,.1);color:#15803d;border:1px solid rgba(22,163,74,.3)}
+.auth-msg.info{background:rgba(23,99,199,.09);color:var(--brand-2);border:1px solid rgba(23,99,199,.25)}
+.captcha{background:var(--bg-soft);border:1px dashed var(--line);border-radius:11px;padding:16px;margin-bottom:12px;display:none;animation:vin .35s}
+.captcha.show{display:block}
+.cap-q{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.cap-code{font-family:var(--fh);font-weight:800;font-size:1.5rem;letter-spacing:6px;color:var(--brand);background:repeating-linear-gradient(45deg,var(--bg-soft-2),var(--bg-soft-2) 6px,transparent 6px,transparent 12px);padding:8px 16px;border-radius:9px;user-select:none;text-decoration:line-through;text-decoration-color:rgba(23,99,199,.35)}
+.cap-refresh{cursor:pointer;color:var(--brand-2);font-size:.8rem;font-weight:600}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-3px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== CURRENCY PAGE ===== */
+.live-dot{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:#16a34a;font-weight:600}
+.live-dot i{width:9px;height:9px;border-radius:50%;background:#16a34a;box-shadow:0 0 0 0 rgba(22,163,74,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(22,163,74,.5)}70%{box-shadow:0 0 0 9px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}
+.rate-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.rate{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow-sm);transition:.3s;position:relative;overflow:hidden}
+.rate:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.rate .pair{display:flex;align-items:center;gap:10px;font-family:var(--fh);font-weight:700;color:var(--ink);font-size:1.05rem}
+.rate .pair .fl{font-size:1.4rem}
+.rate .val{font-family:var(--fh);font-weight:800;font-size:2rem;color:var(--brand-2);margin:14px 0 4px;transition:.4s}
+.rate .val.flash{animation:flash .6s}
+@keyframes flash{0%{color:#16a34a;transform:scale(1.06)}100%{color:var(--brand-2);transform:none}}
+.rate .sub{font-size:.84rem;color:var(--muted)}
+.conv{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:var(--shadow-sm)}
+.conv-row{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:end}
+.conv-row .swap{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--bg-soft);cursor:pointer;display:grid;place-items:center;color:var(--brand-2);transition:.3s}
+.conv-row .swap:hover{transform:rotate(180deg);background:var(--brand-2);color:#fff}
+.conv-out{margin-top:18px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;border-radius:12px;padding:18px 22px;font-family:var(--fh);font-weight:700;font-size:1.3rem;text-align:center}
+
+/* ===== CHARTS / SCHOLARSHIP ===== */
+.chart-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:6px 0 8px}
+.chart-box{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:16px}
+.chart-box h5{font-family:var(--fh);font-size:.9rem;color:var(--ink);margin-bottom:12px}
+.donut{display:flex;align-items:center;gap:16px}
+.donut .ring{width:104px;height:104px;border-radius:50%;flex:none;position:relative}
+.donut .ring::after{content:"";position:absolute;inset:14px;background:var(--bg-soft);border-radius:50%}
+.legend{display:flex;flex-direction:column;gap:7px;font-size:.82rem}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:7px;vertical-align:0}
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar-row{font-size:.82rem}
+.bar-row .lab{display:flex;justify-content:space-between;margin-bottom:4px;color:var(--ink);font-weight:600}
+.bar-track{height:9px;background:var(--bg-soft-2);border-radius:9px;overflow:hidden}
+.bar-fill{height:100%;border-radius:9px;background:linear-gradient(90deg,var(--brand-2),var(--accent));width:0;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.stable{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:6px}
+.stable th,.stable td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+.stable th{background:var(--bg-soft);color:var(--ink);font-family:var(--fh);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.4px}
+.stable td b{color:var(--brand-2)}
+.disc{font-size:.78rem;color:var(--muted);font-style:italic;margin-top:8px}
+
+/* ===== LANGUAGE PAGES ===== */
+.lang-layout{display:grid;grid-template-columns:230px 1fr;gap:30px;align-items:start}
+.toc{position:sticky;top:90px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.toc h4{font-size:.85rem;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px}
+.toc a{display:block;padding:8px 11px;border-radius:8px;font-size:.9rem;color:var(--body);cursor:pointer;transition:.2s}
+.toc a:hover{background:var(--bg-soft);color:var(--brand-2)}
+.lblock{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;margin-bottom:20px;box-shadow:var(--shadow-sm)}
+.lblock h3{font-size:1.3rem;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.lblock h3 .b{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;display:grid;place-items:center;font-family:var(--fh);font-weight:700;font-size:.9rem;flex:none}
+.lblock p{margin-bottom:10px}
+.lblock ul{margin:0 0 6px 18px}.lblock li{margin-bottom:6px}
+.band{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:8px}
+.band .b1{background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;padding:14px}
+.band .b1 b{font-family:var(--fh);color:var(--brand-2);font-size:1.1rem}
+@media(max-width:880px){.lang-layout{grid-template-columns:1fr}.toc{position:static}.chart-wrap{grid-template-columns:1fr}.rate-grid{grid-template-columns:1fr}.conv-row{grid-template-columns:1fr;gap:10px}.conv-row .swap{justify-self:center;transform:rotate(90deg)}}
 </style>
 </head>
 <body>
@@ -460,12 +566,24 @@ footer a:hover{color:var(--accent-2)}
       <a data-route="korea" onclick="go('korea')">Study in Korea</a>
       <a data-route="australia" onclick="go('australia')">Australia</a>
       <a data-route="services" onclick="go('services')">Services</a>
+      <span class="has-drop" id="resDrop"><a onclick="toggleDrop(event)">Resources <svg class="caret" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="drop">
+          <a onclick="go('ielts')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> IELTS Guide</a>
+          <a onclick="go('topik')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> TOPIK Guide</a>
+          <a onclick="go('currency')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0c0 2.5-3 2-3 4M12 18h.01"/></svg> Currency Converter</a>
+        </div>
+      </span>
       <a data-route="contact" onclick="go('contact')">About</a>
       <a class="btn btn-accent sm" style="margin-left:8px" onclick="go('book')">Book Consultation</a>
     </nav>
     <div class="tools">
       <button class="icon-btn" id="searchBtn" title="Search (Ctrl/Cmd+K)" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></button>
       <button class="icon-btn" id="themeBtn" title="Theme" aria-label="Toggle theme"><svg id="thIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button>
+      <button class="btn btn-ghost sm" id="authBtn" style="padding:8px 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:17px;height:17px"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg> Login</button>
+      <div class="acct" id="acctWrap" style="display:none">
+        <div class="acct-btn" id="acctBtn"><div class="acct-av" id="acctAv">U</div><span class="acct-name" id="acctName">User</span></div>
+        <div class="acct-menu" id="acctMenu"><div class="em" id="acctEmail"></div><a onclick="go('book')">📅 Book a Meeting</a><a id="logoutLink">↩ Log out</a></div>
+      </div>
       <button class="icon-btn burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
     </div>
   </div>
@@ -682,9 +800,19 @@ footer a:hover{color:var(--accent-2)}
             <div class="dcell"><span>Work Rights</span><b>48 hrs / fortnight</b></div>
             <div class="dcell"><span>Post-Study</span><b>2–4 years (485)</b></div>
           </div>
-          <p class="note" style="margin-top:16px">Detailed Australian university listings are coming soon. Book a meeting and we'll personally match you with the right course and city.</p>
+          <p class="note" style="margin-top:16px">Browse our Australian university listings below. Tuition figures are indicative annual international fees — confirm exact amounts with each university.</p>
         </div>
       </div>
+    </div>
+  </section>
+  <section class="sec-soft">
+    <div class="wrap">
+      <div class="head"><span class="kicker c">Australian Universities</span><h2>Explore Universities in Australia</h2><p>Click any university for full details — tuition, intakes, requirements, scholarships and charts.</p></div>
+      <div class="uni-bar">
+        <div class="chips" id="ausChips"></div>
+        <div class="srch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="ausSearch" placeholder="Filter Australian universities..." /></div>
+      </div>
+      <div class="uni-grid" id="ausGrid"></div>
     </div>
   </section>
   <section style="padding-top:0"><div class="wrap"><div class="cta"><h2>Planning to study in Australia?</h2><p>Let's discuss your course, budget and visa timeline in a free consultation.</p><div class="btns"><button class="btn btn-accent lg" onclick="go('book')">📅 Talk to an Advisor</button></div></div></div></section>
@@ -815,6 +943,220 @@ footer a:hover{color:var(--accent-2)}
     </div>
   </section>
 </div>
+<!-- ============================ CURRENCY ============================ -->
+<div class="view" id="view-currency">
+  <section class="banner" style="padding:0">
+    <div class="bg" style="--bn:url('https://picsum.photos/seed/currencybg/1600/600')"></div>
+    <div class="wrap" style="padding:60px 22px">
+      <div class="crumb"><a onclick="go('home')">Home</a> / Currency Converter</div>
+      <span class="kicker" style="color:#ffd98a">💱 Live Currency</span>
+      <h1>Currency Converter</h1>
+      <p>Real-time exchange rates to Bangladeshi Taka (BDT) — auto-updating. Plan your tuition and living costs with confidence.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:22px">
+        <span class="live-dot"><i></i> Live rates <span id="rateTime" style="color:var(--muted);font-weight:400"></span></span>
+        <button class="btn btn-ghost sm" id="refreshRates">↻ Refresh now</button>
+      </div>
+      <div class="rate-grid" id="rateGrid">
+        <div class="rate"><div class="pair"><span class="fl">🇺🇸</span> USD → BDT</div><div class="val" id="r_USD">…</div><div class="sub">1 US Dollar in Bangladeshi Taka</div></div>
+        <div class="rate"><div class="pair"><span class="fl">🇰🇷</span> KRW → BDT</div><div class="val" id="r_KRW">…</div><div class="sub">1 Korean Won in Bangladeshi Taka</div></div>
+        <div class="rate"><div class="pair"><span class="fl">🇦🇺</span> AUD → BDT</div><div class="val" id="r_AUD">…</div><div class="sub">1 Australian Dollar in Bangladeshi Taka</div></div>
+        <div class="rate"><div class="pair"><span class="fl">🇨🇦</span> CAD → BDT</div><div class="val" id="r_CAD">…</div><div class="sub">1 Canadian Dollar in Bangladeshi Taka</div></div>
+      </div>
+      <div class="conv" style="margin-top:26px">
+        <h3 style="margin-bottom:16px">Quick Converter</h3>
+        <div class="conv-row">
+          <div class="field"><label>Amount</label><input id="cvAmount" type="number" value="1000" min="0" /></div>
+          <button class="swap" id="cvSwap" title="Swap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 10 3 6l4-4"/><path d="M3 6h13a4 4 0 0 1 4 4v0"/><path d="m17 14 4 4-4 4"/><path d="M21 18H8a4 4 0 0 1-4-4v0"/></svg></button>
+          <div class="field"><label>From</label>
+            <select id="cvFrom"><option value="USD">🇺🇸 USD</option><option value="KRW" selected>🇰🇷 KRW</option><option value="AUD">🇦🇺 AUD</option><option value="CAD">🇨🇦 CAD</option><option value="BDT">🇧🇩 BDT</option></select>
+          </div>
+        </div>
+        <div class="field" style="margin-top:14px"><label>To</label>
+          <select id="cvTo"><option value="BDT" selected>🇧🇩 BDT</option><option value="USD">🇺🇸 USD</option><option value="KRW">🇰🇷 KRW</option><option value="AUD">🇦🇺 AUD</option><option value="CAD">🇨🇦 CAD</option></select>
+        </div>
+        <div class="conv-out" id="cvOut">—</div>
+        <p class="disc" id="cvDisc">Rates provided by open exchange-rate data and refresh automatically every 60 seconds.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================ IELTS ============================ -->
+<div class="view" id="view-ielts">
+  <section class="banner" style="padding:0">
+    <div class="bg" style="--bn:url('https://picsum.photos/seed/ieltsbg/1600/600')"></div>
+    <div class="wrap" style="padding:60px 22px">
+      <div class="crumb"><a onclick="go('home')">Home</a> / IELTS Guide</div>
+      <span class="kicker" style="color:#ffd98a">🗣️ Language Test</span>
+      <h1>IELTS — Complete A–Z Guide</h1>
+      <p>Everything Bangladeshi students need to know about the International English Language Testing System, from format to band scores and preparation tips.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="lang-layout">
+        <aside class="toc">
+          <h4>On this page</h4>
+          <a onclick="jump('ie1')">What is IELTS?</a>
+          <a onclick="jump('ie2')">Test Types</a>
+          <a onclick="jump('ie3')">Test Format</a>
+          <a onclick="jump('ie4')">Band Scores</a>
+          <a onclick="jump('ie5')">Scores You Need</a>
+          <a onclick="jump('ie6')">Fees & Validity</a>
+          <a onclick="jump('ie7')">Preparation Tips</a>
+        </aside>
+        <div>
+          <div class="lblock" id="ie1"><h3><span class="b">i</span> What is IELTS?</h3>
+            <p>IELTS is the world's most popular English proficiency test for higher education and migration, jointly managed by the British Council, IDP and Cambridge. It measures your ability in <b>Listening, Reading, Writing and Speaking</b>, and is accepted by universities in Australia, the UK, Canada, and increasingly for English-taught programs in Korea.</p>
+          </div>
+          <div class="lblock" id="ie2"><h3><span class="b">1</span> Test Types</h3>
+            <ul>
+              <li><b>IELTS Academic</b> — for university admission (Korea English-track, Australia). Most students take this.</li>
+              <li><b>IELTS General Training</b> — for migration and work, not usually for degree study.</li>
+              <li><b>Computer-delivered & Paper-based</b> — same content; computer gives faster results (3–5 days).</li>
+              <li><b>IELTS One Skill Retake</b> — retake just one section if you missed your target in one area.</li>
+            </ul>
+          </div>
+          <div class="lblock" id="ie3"><h3><span class="b">2</span> Test Format (Academic)</h3>
+            <ul>
+              <li><b>Listening</b> — 30 min, 4 sections, 40 questions.</li>
+              <li><b>Reading</b> — 60 min, 3 long passages, 40 questions.</li>
+              <li><b>Writing</b> — 60 min: Task 1 (describe a graph/chart, 150 words) + Task 2 (essay, 250 words).</li>
+              <li><b>Speaking</b> — 11–14 min face-to-face interview in 3 parts.</li>
+            </ul>
+            <p>Total time is about <b>2 hours 45 minutes</b>. Listening, Reading and Writing are completed in one sitting; Speaking may be the same day or within 7 days.</p>
+          </div>
+          <div class="lblock" id="ie4"><h3><span class="b">3</span> Band Scores (0–9)</h3>
+            <p>Each section is scored 0–9 in half-band increments, and the four are averaged into an <b>Overall Band Score</b>.</p>
+            <div class="band">
+              <div class="b1"><b>9</b><div>Expert user</div></div>
+              <div class="b1"><b>7–8</b><div>Good / very good user</div></div>
+              <div class="b1"><b>6–6.5</b><div>Competent user</div></div>
+              <div class="b1"><b>5–5.5</b><div>Modest user</div></div>
+              <div class="b1"><b>&lt;5</b><div>Limited user</div></div>
+            </div>
+          </div>
+          <div class="lblock" id="ie5"><h3><span class="b">4</span> Scores You Typically Need</h3>
+            <table class="stable"><thead><tr><th>Destination / Level</th><th>Typical IELTS</th></tr></thead><tbody>
+              <tr><td>Korea — English-taught Bachelor</td><td><b>5.5 – 6.0</b></td></tr>
+              <tr><td>Korea — top universities (SKY/SNU)</td><td><b>6.0 – 6.5</b></td></tr>
+              <tr><td>Australia — Bachelor / Master</td><td><b>6.0 – 6.5</b> (no band &lt; 6.0)</td></tr>
+              <tr><td>Australia — Nursing / Teaching</td><td><b>7.0</b></td></tr>
+              <tr><td>Foundation / Pathway programs</td><td><b>5.0 – 5.5</b></td></tr>
+            </tbody></table>
+            <p class="disc">Requirements vary by course and year — always confirm with the specific university.</p>
+          </div>
+          <div class="lblock" id="ie6"><h3><span class="b">5</span> Fees & Validity</h3>
+            <ul>
+              <li><b>Validity:</b> IELTS scores are valid for <b>2 years</b>.</li>
+              <li><b>Fee in Bangladesh:</b> approximately <b>BDT 22,500</b> (set by British Council / IDP; check current fee).</li>
+              <li><b>Results:</b> 3–5 days (computer) or 13 days (paper).</li>
+              <li><b>Where:</b> British Council and IDP test centres in Dhaka, Chattogram, Sylhet and more.</li>
+            </ul>
+          </div>
+          <div class="lblock" id="ie7"><h3><span class="b">6</span> Preparation Tips</h3>
+            <ul>
+              <li>Take a timed mock test first to find your weak section.</li>
+              <li>Listening &amp; Reading: practise daily with real test materials; learn to skim and scan.</li>
+              <li>Writing: master Task 1 chart/graph language and Task 2 essay structure (intro–body–conclusion).</li>
+              <li>Speaking: practise speaking English aloud daily; record yourself; learn part-2 cue-card strategies.</li>
+              <li>Build academic vocabulary and review grammar accuracy.</li>
+            </ul>
+            <div style="margin-top:16px"><button class="btn btn-accent" onclick="go('book')">📅 Get IELTS &amp; Admission Guidance</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================ TOPIK ============================ -->
+<div class="view" id="view-topik">
+  <section class="banner" style="padding:0">
+    <div class="bg" style="--bn:url('https://picsum.photos/seed/topikbg/1600/600')"></div>
+    <div class="wrap" style="padding:60px 22px">
+      <div class="crumb"><a onclick="go('home')">Home</a> / TOPIK Guide</div>
+      <span class="kicker" style="color:#ffd98a">🇰🇷 Language Test</span>
+      <h1>TOPIK — Complete A–Z Guide</h1>
+      <p>The Test of Proficiency in Korean — essential for Korean-taught programs, scholarships (GKS) and many student visas.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="lang-layout">
+        <aside class="toc">
+          <h4>On this page</h4>
+          <a onclick="jump('tp1')">What is TOPIK?</a>
+          <a onclick="jump('tp2')">TOPIK I vs II</a>
+          <a onclick="jump('tp3')">Levels (1–6)</a>
+          <a onclick="jump('tp4')">Test Format</a>
+          <a onclick="jump('tp5')">Levels You Need</a>
+          <a onclick="jump('tp6')">Fees, Dates & Validity</a>
+          <a onclick="jump('tp7')">Preparation Tips</a>
+        </aside>
+        <div>
+          <div class="lblock" id="tp1"><h3><span class="b">i</span> What is TOPIK?</h3>
+            <p>TOPIK (Test of Proficiency in Korean) is the official Korean-language exam run by Korea's NIIED. It is required for <b>Korean-taught degree programs</b>, boosts <b>scholarship</b> eligibility (including the Global Korea Scholarship), and is often needed for graduation and the D-2 student visa pathway.</p>
+          </div>
+          <div class="lblock" id="tp2"><h3><span class="b">1</span> TOPIK I vs TOPIK II</h3>
+            <ul>
+              <li><b>TOPIK I</b> — beginner test covering Levels 1–2 (Listening + Reading only).</li>
+              <li><b>TOPIK II</b> — intermediate/advanced test covering Levels 3–6 (Listening + Reading + Writing).</li>
+              <li>There is also <b>IBT TOPIK</b> (internet-based) now available in many countries.</li>
+            </ul>
+          </div>
+          <div class="lblock" id="tp3"><h3><span class="b">2</span> The 6 Levels</h3>
+            <div class="band">
+              <div class="b1"><b>Level 1–2</b><div>Beginner (basic survival Korean)</div></div>
+              <div class="b1"><b>Level 3–4</b><div>Intermediate (study &amp; daily life)</div></div>
+              <div class="b1"><b>Level 5–6</b><div>Advanced (academic &amp; professional)</div></div>
+            </div>
+            <p style="margin-top:10px">Your level is decided automatically by your total score — you don't choose it. Higher scores in TOPIK II award higher levels.</p>
+          </div>
+          <div class="lblock" id="tp4"><h3><span class="b">3</span> Test Format</h3>
+            <ul>
+              <li><b>TOPIK I</b> — Listening (30 Q, 40 min) + Reading (40 Q, 60 min). Total 200 marks.</li>
+              <li><b>TOPIK II</b> — Listening (50 Q) + Writing (4 questions incl. an essay) + Reading (50 Q). Total 300 marks, ~180 min.</li>
+              <li>Writing in TOPIK II includes short answers and a 600–700 character essay.</li>
+            </ul>
+          </div>
+          <div class="lblock" id="tp5"><h3><span class="b">4</span> Levels You Typically Need</h3>
+            <table class="stable"><thead><tr><th>Purpose</th><th>Typical TOPIK</th></tr></thead><tbody>
+              <tr><td>Korean-taught Bachelor (admission)</td><td><b>Level 3–4</b></td></tr>
+              <tr><td>Graduation from a Korean-taught degree</td><td><b>Level 4–5</b></td></tr>
+              <tr><td>Global Korea Scholarship (GKS)</td><td><b>Level 3+</b> (or 1-yr language study first)</td></tr>
+              <tr><td>Science/Engineering (some universities)</td><td><b>Level 2–3</b></td></tr>
+              <tr><td>Language (D-4) visa to study Korean</td><td><b>No TOPIK needed to start</b></td></tr>
+            </tbody></table>
+            <p class="disc">English-taught programs may waive TOPIK and accept IELTS/TOEFL instead.</p>
+          </div>
+          <div class="lblock" id="tp6"><h3><span class="b">5</span> Fees, Dates &amp; Validity</h3>
+            <ul>
+              <li><b>Validity:</b> TOPIK results are valid for <b>2 years</b>.</li>
+              <li><b>Frequency:</b> held several times a year; overseas (incl. Bangladesh) typically a few sittings annually.</li>
+              <li><b>Fee:</b> relatively low (varies by country/centre — confirm with the local test centre).</li>
+              <li><b>Results:</b> announced online about a month after the test on the official TOPIK website.</li>
+            </ul>
+          </div>
+          <div class="lblock" id="tp7"><h3><span class="b">6</span> Preparation Tips</h3>
+            <ul>
+              <li>Master Hangul (the Korean alphabet) first — it's quick to learn and essential.</li>
+              <li>Build vocabulary by themes and study high-frequency grammar patterns.</li>
+              <li>Practise with past TOPIK papers (freely available online) under timed conditions.</li>
+              <li>For TOPIK II, practise the essay regularly and get feedback.</li>
+              <li>Use listening practice daily — K-dramas and Korean news help train your ear.</li>
+            </ul>
+            <div style="margin-top:16px"><button class="btn btn-accent" onclick="go('book')">📅 Get TOPIK &amp; Study-in-Korea Guidance</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 </main>
 
 <!-- ===== FOOTER ===== -->
@@ -857,8 +1199,56 @@ footer a:hover{color:var(--accent-2)}
   <div class="modal"><button class="mx" onclick="closeDetail()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button><div id="detailContent"></div></div>
 </div>
 
+<!-- ===== AUTH MODAL ===== -->
+<div class="mwrap" id="authModal">
+  <div class="mbg" onclick="closeAuth()"></div>
+  <div class="modal auth-card">
+    <button class="mx" onclick="closeAuth()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="mb" style="padding:30px">
+      <div style="text-align:center;margin-bottom:18px">
+        <div style="width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;margin:0 auto 12px"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:28px"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <h2 id="authTitle" style="font-size:1.4rem">Welcome to IEVS</h2>
+        <p class="muted" style="font-size:.9rem">Sign in is optional — create an account to save your journey.</p>
+      </div>
+      <div class="auth-tabs"><button id="tabSignup" class="active" onclick="authTab('signup')">Sign Up</button><button id="tabLogin" onclick="authTab('login')">Log In</button></div>
+      <div class="auth-msg" id="authMsg"></div>
+
+      <button class="prov" onclick="oauth('google')"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.9a5 5 0 0 1-2.2 3.3v2.7h3.5c2-1.9 3.3-4.7 3.3-7.8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.5-2.7c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.3-1.9-6.2-4.6H2.2v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.2a11 11 0 0 0 0 9.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .6 4.2 1.7l3.1-3.1A11 11 0 0 0 2.2 7.1l3.6 2.8C6.7 7.3 9.1 5.4 12 5.4z"/></svg> Continue with Google</button>
+      <button class="prov" onclick="oauth('apple')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.8c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.6.8-3.3.8-.7 0-1.7-.8-2.8-.8-1.5 0-2.8.8-3.6 2.2-1.5 2.7-.4 6.6 1.1 8.8.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.6.7 2.8.7c1.1 0 1.9-1 2.6-2 .8-1.2 1.2-2.3 1.2-2.4-.1 0-2.2-.9-2.2-3.7zM14.3 6.3c.6-.7 1-1.7.9-2.7-.9 0-2 .6-2.6 1.3-.6.6-1 1.6-.9 2.6 1 .1 2-.5 2.6-1.2z"/></svg> Continue with Apple</button>
+
+      <div class="auth-div">or</div>
+
+      <div id="emailBox">
+        <div class="auth-field"><label>Email address</label><input id="aEmail" type="email" placeholder="you@example.com" /></div>
+        <div class="auth-field"><label>Password</label><input id="aPass" type="password" placeholder="At least 6 characters" /></div>
+      </div>
+
+      <div id="phoneBox" style="display:none">
+        <div class="auth-field"><label>Phone number (with country code)</label><input id="aPhone" type="tel" placeholder="+8801XXXXXXXXX" /></div>
+        <div class="auth-field" id="otpField" style="display:none"><label>Enter OTP code</label><input id="aOtp" type="text" placeholder="6-digit code" /></div>
+      </div>
+
+      <!-- captcha (login only) -->
+      <div class="captcha" id="capBox">
+        <div class="cap-q"><span style="font-size:.85rem;font-weight:600;color:var(--ink)">Type the code below:</span><span class="cap-refresh" onclick="newCaptcha()">↻ new code</span></div>
+        <div style="display:flex;gap:10px;align-items:center"><span class="cap-code" id="capCode">A7K9P</span><input class="auth-field" id="capInput" style="flex:1;margin:0;padding:10px 12px;border:1px solid var(--line);border-radius:9px" placeholder="Enter code" /></div>
+      </div>
+
+      <button class="btn btn-primary" id="authPrimary" style="width:100%;justify-content:center;margin-top:6px" onclick="authPrimary()">Create Account</button>
+
+      <div class="auth-toggle" onclick="togglePhone()" id="phoneToggle">📱 Use phone number instead</div>
+      <div class="auth-toggle" onclick="toggleMore()">Other options ▾</div>
+      <div class="auth-more" id="authMore">
+        <button class="prov" style="margin-top:10px" onclick="protonSignup()"><svg viewBox="0 0 24 24" fill="none" stroke="#6d4aff" stroke-width="1.9" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> Continue with Proton Mail</button>
+      </div>
+      <p class="disc" style="text-align:center;margin-top:14px">Temporary / disposable emails are not accepted. We may send a confirmation email to verify your address.</p>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m20 6-11 11-5-5"/></svg><span id="toastMsg">Done</span></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* =========================================================
    CONFIG
@@ -894,7 +1284,88 @@ var UNIS = [
   {abbr:"UNIST",name:"Ulsan National Institute of Sci. & Tech.",city:"Ulsan",type:"National (Sci/Tech)",rank:"Top young science institute",strengths:"Modern research institute, all-English science & engineering programs with strong scholarship support.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr (Fall)",feeKRW:"National scholarships available",feeUSD:"Tuition support available",lang:"English (primary)",req:["High school diploma (STEM)","IELTS 6.0 / TOEFL iBT 71+ (no TOPIK)","Strong science & math record","Study plan & references"],courses:[{n:"Computer Science & Engineering",l:"Bachelor"},{n:"Materials Science",l:"Bachelor"},{n:"Mechanical Engineering",l:"Bachelor"},{n:"Energy & Chemical Eng.",l:"Bachelor"}],web:"https://www.unist.ac.kr/"},
   {abbr:"GIST",name:"Gwangju Institute of Sci. & Tech.",city:"Gwangju",type:"National (Sci/Tech)",rank:"Elite research institute",strengths:"Research-intensive institute with English-taught science programs and excellent lab facilities.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr (Fall)",feeKRW:"Scholarships common",feeUSD:"Tuition support available",lang:"English (primary)",req:["High school diploma (STEM)","IELTS 6.0+ / TOEFL iBT 80+","Strong science & math background","Study plan & references"],courses:[{n:"Electrical Engineering & CS",l:"Bachelor"},{n:"Materials Science",l:"BS/PhD"},{n:"Life Sciences",l:"MS/PhD"},{n:"Physics & Photonics",l:"MS/PhD"}],web:"https://www.gist.ac.kr/en/"},
   {abbr:"UOS",name:"University of Seoul",city:"Seoul",type:"Public (Municipal)",rank:"Affordable public option",strengths:"Seoul city-run university with low tuition, strong in urban planning, taxation and engineering.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.0M–3.8M KRW / sem",feeUSD:"≈ $1,450–$2,750 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Urban Planning & Design",l:"Bachelor"},{n:"International Relations",l:"Bachelor"},{n:"Civil Engineering",l:"Bachelor"},{n:"Taxation",l:"Bachelor"}],web:"https://www.uos.ac.kr/eng/main.do"},
-  {abbr:"SMU",name:"Sookmyung Women's University",city:"Seoul",type:"Private (Women)",rank:"Leading women's university",strengths:"Top women's university in central Seoul, strong in business, IT, pharmacy and global service.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Oct–Nov (Spring) • Apr–May (Fall)",feeKRW:"3.3M–5.5M KRW / sem",feeUSD:"≈ $2,400–$4,000 / sem",lang:"Korean & English-taught",req:["Female applicants only","High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Financial proof"],courses:[{n:"Business Administration",l:"Bachelor"},{n:"IT Engineering",l:"Bachelor"},{n:"Global Service (English)",l:"Bachelor"},{n:"Pharmacy",l:"Bachelor"}],web:"https://www.sookmyung.ac.kr/en/"}
+  {abbr:"SMU",name:"Sookmyung Women's University",city:"Seoul",type:"Private (Women)",rank:"Leading women's university",strengths:"Top women's university in central Seoul, strong in business, IT, pharmacy and global service.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Oct–Nov (Spring) • Apr–May (Fall)",feeKRW:"3.3M–5.5M KRW / sem",feeUSD:"≈ $2,400–$4,000 / sem",lang:"Korean & English-taught",req:["Female applicants only","High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Financial proof"],courses:[{n:"Business Administration",l:"Bachelor"},{n:"IT Engineering",l:"Bachelor"},{n:"Global Service (English)",l:"Bachelor"},{n:"Pharmacy",l:"Bachelor"}],web:"https://www.sookmyung.ac.kr/en/"},
+  {abbr:"KMU",name:"Kookmin University",city:"Seoul",type:"Private",rank:"Strong in design & automotive eng.",strengths:"Well known for automotive engineering, design and business in northern Seoul.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.2M–5.2M KRW / sem",feeUSD:"≈ $2,300–$3,800 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Automobile Engineering",l:"Bachelor"},{n:"Industrial Design",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.kookmin.ac.kr/"},
+  {abbr:"SSU",name:"Soongsil University",city:"Seoul",type:"Private",rank:"Strong IT & engineering",strengths:"Korea's first modern university; strong in IT, software and electronic engineering.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.2M–5.2M KRW / sem",feeUSD:"≈ $2,300–$3,800 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Computer Science & Engineering",l:"Bachelor"},{n:"Electronic Engineering",l:"Bachelor"},{n:"Global Business",l:"Bachelor"}],web:"https://www.ssu.ac.kr/"},
+  {abbr:"SMG",name:"Sangmyung University",city:"Seoul",type:"Private",rank:"Arts, media & education",strengths:"Known for arts, media, animation and teacher education programs.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.1M–5.0M KRW / sem",feeUSD:"≈ $2,200–$3,600 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Portfolio (arts)","Proof of funds"],courses:[{n:"Animation",l:"Bachelor"},{n:"Digital Media",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.smu.ac.kr/"},
+  {abbr:"STECH",name:"Seoul National Univ. of Science & Technology",city:"Seoul",type:"National",rank:"Top applied science & tech",strengths:"Practical, industry-focused national university (SeoulTech) strong in engineering and technology.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.2M–4.0M KRW / sem",feeUSD:"≈ $1,600–$2,900 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Mechanical & Automotive Eng.",l:"Bachelor"},{n:"Computer Science & Eng.",l:"Bachelor"},{n:"Industrial Engineering",l:"Bachelor"}],web:"https://en.seoultech.ac.kr/"},
+  {abbr:"KW",name:"Kwangwoon University",city:"Seoul",type:"Private",rank:"Electronics & ICT focus",strengths:"Specialised in electronics, robotics and information & communication technology.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.2M–5.2M KRW / sem",feeUSD:"≈ $2,300–$3,800 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Electronics & Communication Eng.",l:"Bachelor"},{n:"Robotics",l:"Bachelor"},{n:"Software",l:"Bachelor"}],web:"https://www.kw.ac.kr/"},
+  {abbr:"MJU",name:"Myongji University",city:"Seoul & Yongin",type:"Private",rank:"Broad programs",strengths:"Comprehensive university with strong architecture, business and engineering schools.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.1M–5.0M KRW / sem",feeUSD:"≈ $2,200–$3,600 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Architecture",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"},{n:"Chemical Engineering",l:"Bachelor"}],web:"https://www.mju.ac.kr/"},
+  {abbr:"GCU",name:"Gachon University",city:"Seongnam (Gyeonggi)",type:"Private",rank:"Strong medicine & IT",strengths:"Fast-growing university near Seoul with strong medicine, AI and bio-engineering.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.3M–5.4M KRW / sem",feeUSD:"≈ $2,400–$3,900 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"AI & Software",l:"Bachelor"},{n:"Bio-Nano Technology",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.gachon.ac.kr/"},
+  {abbr:"DKU",name:"Dankook University",city:"Yongin (Gyeonggi)",type:"Private",rank:"Comprehensive, dentistry",strengths:"Comprehensive private university known for dentistry, engineering and business.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.2M–5.3M KRW / sem",feeUSD:"≈ $2,300–$3,800 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Mechanical Engineering",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"},{n:"Software",l:"Bachelor"}],web:"https://www.dankook.ac.kr/"},
+  {abbr:"INU",name:"Incheon National University",city:"Incheon",type:"National",rank:"Rising national university",strengths:"City-affiliated national university with growing international programs near Songdo.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.1M–3.9M KRW / sem",feeUSD:"≈ $1,550–$2,850 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Business Administration",l:"Bachelor"},{n:"Computer Engineering",l:"Bachelor"},{n:"International Trade",l:"Bachelor"}],web:"https://www.inu.ac.kr/"},
+  {abbr:"CUK",name:"Catholic University of Korea",city:"Bucheon (Gyeonggi)",type:"Private",rank:"Strong medicine & nursing",strengths:"Renowned for medicine, nursing and life sciences with a faith-based mission.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.3M–5.5M KRW / sem",feeUSD:"≈ $2,400–$4,000 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Nursing",l:"Bachelor"},{n:"Biotechnology",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.catholic.ac.kr/"},
+  {abbr:"SWU",name:"Seoul Women's University",city:"Seoul",type:"Private (Women)",rank:"Women's university",strengths:"Character-education focused women's university strong in IT and social sciences.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.1M–5.0M KRW / sem",feeUSD:"≈ $2,200–$3,600 / sem",lang:"Korean & some English-taught",req:["Female applicants only","High school diploma","TOPIK Level 3 OR IELTS 5.5","Proof of funds"],courses:[{n:"Software Convergence",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"},{n:"Media & Communication",l:"Bachelor"}],web:"https://www.swu.ac.kr/"},
+  {abbr:"SSW",name:"Sungshin Women's University",city:"Seoul",type:"Private (Women)",rank:"Women's university",strengths:"Women's university strong in education, nursing and beauty industry studies.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.1M–5.0M KRW / sem",feeUSD:"≈ $2,200–$3,600 / sem",lang:"Korean & some English-taught",req:["Female applicants only","High school diploma","TOPIK Level 3 OR IELTS 5.5","Proof of funds"],courses:[{n:"Nursing",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"},{n:"Korean Language & Culture",l:"Language"}],web:"https://www.sungshin.ac.kr/"},
+  {abbr:"DSW",name:"Duksung Women's University",city:"Seoul",type:"Private (Women)",rank:"Women's university",strengths:"Women's university focused on liberal arts, pharmacy and social sciences.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.0M–4.9M KRW / sem",feeUSD:"≈ $2,200–$3,500 / sem",lang:"Korean & some English-taught",req:["Female applicants only","High school diploma","TOPIK Level 3 OR IELTS 5.5","Proof of funds"],courses:[{n:"Pharmacy",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"},{n:"Psychology",l:"Bachelor"}],web:"https://www.duksung.ac.kr/"},
+  {abbr:"HSU",name:"Hansung University",city:"Seoul",type:"Private",rank:"Design & IT",strengths:"Compact Seoul university strong in design, IT and global trade.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.0M–4.9M KRW / sem",feeUSD:"≈ $2,200–$3,500 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Design",l:"Bachelor"},{n:"IT Convergence",l:"Bachelor"},{n:"Global Trade",l:"Bachelor"}],web:"https://www.hansung.ac.kr/"},
+  {abbr:"KGU",name:"Kyonggi University",city:"Suwon (Gyeonggi)",type:"Private",rank:"Tourism & security studies",strengths:"Known for tourism, hotel management and security/criminal-justice programs.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.0M–4.9M KRW / sem",feeUSD:"≈ $2,200–$3,500 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Tourism Management",l:"Bachelor"},{n:"Hotel & Restaurant Mgmt.",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.kyonggi.ac.kr/"},
+  {abbr:"SAH",name:"Sahmyook University",city:"Seoul",type:"Private",rank:"Nursing & health",strengths:"Health-sciences focused university popular with international students; strong nursing.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.0M–4.8M KRW / sem",feeUSD:"≈ $2,200–$3,500 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Nursing",l:"Bachelor"},{n:"Pharmacy",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://eng.syu.ac.kr/"},
+  {abbr:"KAU",name:"Korea Aerospace University",city:"Goyang (Gyeonggi)",type:"Private",rank:"#1 aviation in Korea",strengths:"Specialised in aerospace, aviation operations and aeronautical engineering.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.3M–5.3M KRW / sem",feeUSD:"≈ $2,400–$3,900 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Aerospace & Mechanical Eng.",l:"Bachelor"},{n:"Air Transport & Logistics",l:"Bachelor"},{n:"Software",l:"Bachelor"}],web:"https://www.kau.ac.kr/"},
+  {abbr:"CNU",name:"Chonnam National University",city:"Gwangju",type:"National",rank:"Flagship national (Honam)",strengths:"Major national university in Gwangju with strong agriculture, medicine and engineering.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.1M–4.1M KRW / sem",feeUSD:"≈ $1,550–$3,000 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Mechanical Engineering",l:"Bachelor"},{n:"Agricultural Sciences",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.jnu.ac.kr/"},
+  {abbr:"CNUd",name:"Chungnam National University",city:"Daejeon",type:"National",rank:"Strong research national",strengths:"Leading national university in Daejeon strong in science, engineering and agriculture.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.1M–4.1M KRW / sem",feeUSD:"≈ $1,550–$3,000 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Computer Science & Eng.",l:"Bachelor"},{n:"Biological Sciences",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://plus.cnu.ac.kr/"},
+  {abbr:"CBNU",name:"Chungbuk National University",city:"Cheongju",type:"National",rank:"Strong bio & vet",strengths:"National university known for veterinary medicine, bio-science and engineering.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.0M–4.0M KRW / sem",feeUSD:"≈ $1,500–$2,900 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Veterinary Medicine",l:"Bachelor"},{n:"Biotechnology",l:"Bachelor"},{n:"Civil Engineering",l:"Bachelor"}],web:"https://www.chungbuk.ac.kr/"},
+  {abbr:"JBNU",name:"Jeonbuk National University",city:"Jeonju",type:"National",rank:"Flagship national (Jeonbuk)",strengths:"Comprehensive national university strong in engineering, agriculture and life sciences.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.0M–4.0M KRW / sem",feeUSD:"≈ $1,500–$2,900 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Mechanical Engineering",l:"Bachelor"},{n:"Food Science & Technology",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.jbnu.ac.kr/"},
+  {abbr:"GNU",name:"Gyeongsang National University",city:"Jinju",type:"National",rank:"Agriculture & mechanical",strengths:"National university strong in agriculture, aerospace and mechanical engineering.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.0M–3.9M KRW / sem",feeUSD:"≈ $1,500–$2,850 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Aerospace Engineering",l:"Bachelor"},{n:"Agriculture",l:"Bachelor"},{n:"Mechanical Engineering",l:"Bachelor"}],web:"https://www.gnu.ac.kr/"},
+  {abbr:"KNUc",name:"Kangwon National University",city:"Chuncheon",type:"National",rank:"Strong bio & forestry",strengths:"National university in Gangwon known for forestry, veterinary and bio-resources.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.0M–3.9M KRW / sem",feeUSD:"≈ $1,500–$2,850 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Veterinary Medicine",l:"Bachelor"},{n:"Forest Sciences",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.kangwon.ac.kr/"},
+  {abbr:"JNUj",name:"Jeju National University",city:"Jeju",type:"National",rank:"Island national university",strengths:"Located on Jeju Island; strong in oceanography, tourism and veterinary science.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.0M–3.8M KRW / sem",feeUSD:"≈ $1,500–$2,800 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Tourism Management",l:"Bachelor"},{n:"Marine Science",l:"Bachelor"},{n:"Veterinary Medicine",l:"Bachelor"}],web:"https://www.jejunu.ac.kr/"},
+  {abbr:"PKNU",name:"Pukyong National University",city:"Busan",type:"National",rank:"#1 fisheries & marine",strengths:"Busan national university leading in fisheries, marine science and engineering.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.0M–3.9M KRW / sem",feeUSD:"≈ $1,500–$2,850 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Marine Biology",l:"Bachelor"},{n:"Mechanical Engineering",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.pknu.ac.kr/"},
+  {abbr:"HBNU",name:"Hanbat National University",city:"Daejeon",type:"National",rank:"Applied engineering",strengths:"Practical national university focused on engineering, IT and architecture.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.0M–3.8M KRW / sem",feeUSD:"≈ $1,500–$2,800 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Mechanical Engineering",l:"Bachelor"},{n:"Computer Engineering",l:"Bachelor"},{n:"Architecture",l:"Bachelor"}],web:"https://www.hanbat.ac.kr/"},
+  {abbr:"KNUg",name:"Kongju National University",city:"Gongju",type:"National",rank:"Education & engineering",strengths:"National university known for teacher education, engineering and agriculture.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.0M–3.8M KRW / sem",feeUSD:"≈ $1,500–$2,800 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Mechanical Engineering",l:"Bachelor"},{n:"Education",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.kongju.ac.kr/"},
+  {abbr:"KMOU",name:"Korea Maritime & Ocean University",city:"Busan",type:"National",rank:"#1 maritime in Korea",strengths:"Specialised national university for maritime, shipping and ocean engineering.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.1M–3.9M KRW / sem",feeUSD:"≈ $1,550–$2,850 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Naval Architecture & Ocean Eng.",l:"Bachelor"},{n:"Maritime Transportation",l:"Bachelor"},{n:"Logistics",l:"Bachelor"}],web:"https://www.kmou.ac.kr/"},
+  {abbr:"KIT",name:"Kumoh National Institute of Technology",city:"Gumi",type:"National (Tech)",rank:"Engineering institute",strengths:"Engineering-focused national institute close to Korea's electronics industry hub.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"2.0M–3.8M KRW / sem",feeUSD:"≈ $1,500–$2,800 / sem",lang:"Korean & some English-taught",req:["High school diploma (STEM)","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Electronic Engineering",l:"Bachelor"},{n:"Mechanical Engineering",l:"Bachelor"},{n:"Computer Engineering",l:"Bachelor"}],web:"https://www.kumoh.ac.kr/"},
+  {abbr:"ANU",name:"Andong National University",city:"Andong",type:"National",rank:"Regional national",strengths:"National university strong in bio-industry, culture studies and engineering.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"1.9M–3.6M KRW / sem",feeUSD:"≈ $1,400–$2,650 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Bio-Industry",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"},{n:"Korean Studies",l:"Bachelor"}],web:"https://www.anu.ac.kr/"},
+  {abbr:"MNU",name:"Mokpo National University",city:"Muan (Jeonnam)",type:"National",rank:"Regional national",strengths:"Coastal national university with marine, ceramics and engineering programs.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"1.9M–3.6M KRW / sem",feeUSD:"≈ $1,400–$2,650 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Marine Science",l:"Bachelor"},{n:"Mechanical Engineering",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.mokpo.ac.kr/"},
+  {abbr:"CWNU",name:"Changwon National University",city:"Changwon",type:"National",rank:"Mechatronics & industry",strengths:"National university near a major industrial city; strong mechatronics and engineering.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"1.9M–3.7M KRW / sem",feeUSD:"≈ $1,400–$2,700 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Mechatronics Engineering",l:"Bachelor"},{n:"Mechanical Engineering",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.changwon.ac.kr/"},
+  {abbr:"SCNU",name:"Sunchon National University",city:"Suncheon",type:"National",rank:"Agriculture & environment",strengths:"National university focused on agriculture, environment and bio-resources.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr–May (Fall)",feeKRW:"1.9M–3.6M KRW / sem",feeUSD:"≈ $1,400–$2,650 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3+ OR IELTS 5.5","Study plan","Financial certificate"],courses:[{n:"Agriculture",l:"Bachelor"},{n:"Environmental Engineering",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.scnu.ac.kr/"},
+  {abbr:"DGIST",name:"Daegu Gyeongbuk Institute of Science & Technology",city:"Daegu",type:"National (Sci/Tech)",rank:"Elite research institute",strengths:"Research-intensive science & technology institute with English-taught programs and scholarships.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Oct (Spring) • Apr (Fall)",feeKRW:"Scholarships common",feeUSD:"Tuition support available",lang:"English (primary)",req:["High school diploma (STEM)","IELTS 6.0+ / TOEFL iBT 80+","Strong science & math record","Study plan & references"],courses:[{n:"Electrical Engineering & CS",l:"BS/MS/PhD"},{n:"Robotics Engineering",l:"Bachelor"},{n:"Brain Sciences",l:"MS/PhD"}],web:"https://www.dgist.ac.kr/en/"},
+  {abbr:"YNU",name:"Yeungnam University",city:"Gyeongsan (Gyeongbuk)",type:"Private",rank:"Large comprehensive",strengths:"One of the largest private universities, strong in engineering, medicine and business.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.0M–5.0M KRW / sem",feeUSD:"≈ $2,200–$3,600 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Mechanical Engineering",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"},{n:"Pharmacy",l:"Bachelor"}],web:"https://www.yu.ac.kr/"},
+  {abbr:"KMUd",name:"Keimyung University",city:"Daegu",type:"Private",rank:"Strong medicine & arts",strengths:"Large Daegu private university with beautiful campus, medicine and design strengths.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.0M–5.0M KRW / sem",feeUSD:"≈ $2,200–$3,600 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Medicine-related Sciences",l:"Bachelor"},{n:"Visual Design",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.kmu.ac.kr/"},
+  {abbr:"IJU",name:"Inje University",city:"Gimhae (Gyeongnam)",type:"Private",rank:"Medicine & health",strengths:"Private university with a strong medical school and health science programs.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.0M–5.0M KRW / sem",feeUSD:"≈ $2,200–$3,600 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Nursing",l:"Bachelor"},{n:"Physical Therapy",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.inje.ac.kr/"},
+  {abbr:"DAU",name:"Dong-A University",city:"Busan",type:"Private",rank:"Comprehensive (Busan)",strengths:"Major Busan private university with law, medicine and engineering schools.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.0M–5.0M KRW / sem",feeUSD:"≈ $2,200–$3,600 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Mechanical Engineering",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"},{n:"Tourism Management",l:"Bachelor"}],web:"https://www.donga.ac.kr/"},
+  {abbr:"KSU",name:"Kyungsung University",city:"Busan",type:"Private",rank:"Arts & business (Busan)",strengths:"Popular Busan private university strong in arts, business and IT.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"2.9M–4.8M KRW / sem",feeUSD:"≈ $2,100–$3,500 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Business Administration",l:"Bachelor"},{n:"Digital Media",l:"Bachelor"},{n:"Software",l:"Bachelor"}],web:"https://www.ks.ac.kr/"},
+  {abbr:"SLU",name:"Silla University",city:"Busan",type:"Private",rank:"Regional private",strengths:"Busan private university with engineering, nursing and tourism programs.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"2.8M–4.6M KRW / sem",feeUSD:"≈ $2,000–$3,350 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Nursing",l:"Bachelor"},{n:"Mechanical Engineering",l:"Bachelor"},{n:"Tourism",l:"Bachelor"}],web:"https://www.silla.ac.kr/"},
+  {abbr:"WKU",name:"Wonkwang University",city:"Iksan (Jeonbuk)",type:"Private",rank:"Medicine & oriental med.",strengths:"Known for medicine, Korean oriental medicine and dentistry.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.0M–5.0M KRW / sem",feeUSD:"≈ $2,200–$3,600 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Korean Medicine",l:"Bachelor"},{n:"Dentistry-related",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.wku.ac.kr/"},
+  {abbr:"CSU",name:"Chosun University",city:"Gwangju",type:"Private",rank:"Large private (Honam)",strengths:"One of the largest private universities in the Honam region; strong medicine and dentistry.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.0M–5.0M KRW / sem",feeUSD:"≈ $2,200–$3,600 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Dentistry-related",l:"Bachelor"},{n:"Mechanical Engineering",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www3.chosun.ac.kr/"},
+  {abbr:"HNU",name:"Hannam University",city:"Daejeon",type:"Private",rank:"Comprehensive (Daejeon)",strengths:"Daejeon private university with strong linguistics, business and engineering.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"2.9M–4.8M KRW / sem",feeUSD:"≈ $2,100–$3,500 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Business Administration",l:"Bachelor"},{n:"Linguistics",l:"Bachelor"},{n:"Computer Engineering",l:"Bachelor"}],web:"https://www.hannam.ac.kr/"},
+  {abbr:"WSU",name:"Woosong University",city:"Daejeon",type:"Private",rank:"#1 for intl. students (SolBridge)",strengths:"Very international university; SolBridge Business School and culinary arts taught in English.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.0M–5.2M KRW / sem",feeUSD:"≈ $2,200–$3,800 / sem",lang:"English & Korean",req:["High school diploma","IELTS 5.5 OR TOPIK Level 3","Study plan","Proof of funds"],courses:[{n:"Global Business (SolBridge)",l:"Bachelor"},{n:"Culinary Arts",l:"Bachelor"},{n:"AI & Big Data",l:"Bachelor"}],web:"https://www.wsu.ac.kr/"},
+  {abbr:"SCH",name:"Soonchunhyang University",city:"Asan (Chungnam)",type:"Private",rank:"Medicine & health",strengths:"Private university with a respected medical school and health-science programs.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"3.0M–5.0M KRW / sem",feeUSD:"≈ $2,200–$3,600 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Nursing",l:"Bachelor"},{n:"Medical Sciences",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://home.sch.ac.kr/"},
+  {abbr:"HSEO",name:"Hoseo University",city:"Asan (Chungnam)",type:"Private",rank:"Engineering & venture",strengths:"Venture-spirited private university strong in engineering, IT and nursing.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"2.9M–4.8M KRW / sem",feeUSD:"≈ $2,100–$3,500 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Computer Engineering",l:"Bachelor"},{n:"Nursing",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.hoseo.ac.kr/"},
+  {abbr:"CJU",name:"Cheongju University",city:"Cheongju",type:"Private",rank:"Arts & broadcasting",strengths:"Private university known for arts, broadcasting and design programs.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"2.8M–4.7M KRW / sem",feeUSD:"≈ $2,050–$3,400 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Broadcasting & Film",l:"Bachelor"},{n:"Visual Design",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.cju.ac.kr/"},
+  {abbr:"DGU2",name:"Daegu University",city:"Gyeongsan (Gyeongbuk)",type:"Private",rank:"Special education leader",strengths:"Private university nationally recognised for special education and rehabilitation sciences.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"2.9M–4.8M KRW / sem",feeUSD:"≈ $2,100–$3,500 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Special Education",l:"Bachelor"},{n:"Rehabilitation Science",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.daegu.ac.kr/"},
+  {abbr:"YSU",name:"Youngsan University",city:"Yangsan (Gyeongnam)",type:"Private",rank:"Hospitality & culinary",strengths:"Private university focused on hospitality, culinary arts and tourism.",intakes:"Spring (Mar) & Fall (Sep)",start:"Early March / Early September",deadlines:"Sep–Nov (Spring) • Apr–Jun (Fall)",feeKRW:"2.8M–4.6M KRW / sem",feeUSD:"≈ $2,050–$3,350 / sem",lang:"Korean & some English-taught",req:["High school diploma","TOPIK Level 3 OR IELTS 5.5","Study plan","Proof of funds"],courses:[{n:"Hotel & Tourism",l:"Bachelor"},{n:"Culinary Arts",l:"Bachelor"},{n:"Business Administration",l:"Bachelor"}],web:"https://www.ysu.ac.kr/"}
+];
+
+/* ===== AUSTRALIAN UNIVERSITIES (annual intl. tuition, indicative) ===== */
+var AUS_UNIS=[
+  {abbr:"UoM",name:"University of Melbourne",city:"Melbourne, VIC",type:"Go8 • Public",rank:"#1 in Australia • Top 20 World",strengths:"Australia's leading research university; the 'Melbourne Model' degrees and strong global reputation.",intakes:"February & July (some Nov)",start:"Late Feb / Late July",deadlines:"Oct–Dec (Feb) • Apr–May (Jul)",feeKRW:"AUD 45,000–52,000 / yr",feeUSD:"≈ $29,000–$34,000 / yr",lang:"English",req:["Year 12 / IB or equivalent (UG); Bachelor (PG)","IELTS 6.5 (no band < 6.0) / TOEFL / PTE","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Computing & Software Systems",l:"Bachelor/Master"},{n:"Commerce",l:"Bachelor"},{n:"Engineering",l:"Master"},{n:"Data Science",l:"Master"}],web:"https://www.unimelb.edu.au/"},
+  {abbr:"USyd",name:"University of Sydney",city:"Sydney, NSW",type:"Go8 • Public",rank:"Top 5 Australia • Top 25 World",strengths:"Historic Go8 university with broad programs and a vibrant campus in central Sydney.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Oct–Dec (Feb) • Apr–May (Jul)",feeKRW:"AUD 48,000–56,000 / yr",feeUSD:"≈ $31,000–$36,000 / yr",lang:"English",req:["Year 12 / IB or equivalent (UG)","IELTS 6.5 (no band < 6.0) / TOEFL / PTE","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Computer Science",l:"Bachelor"},{n:"Commerce",l:"Bachelor"},{n:"Engineering",l:"Master"},{n:"Information Technology",l:"Master"}],web:"https://www.sydney.edu.au/"},
+  {abbr:"UNSW",name:"UNSW Sydney",city:"Sydney, NSW",type:"Go8 • Public",rank:"Top 5 Australia • Top 20 World",strengths:"Strong in engineering, business and technology; trimester system with three intakes.",intakes:"Term 1 (Feb), Term 2 (May), Term 3 (Sep)",start:"Feb / May / Sep",deadlines:"~2 months before each term",feeKRW:"AUD 47,000–55,000 / yr",feeUSD:"≈ $30,000–$36,000 / yr",lang:"English",req:["Year 12 / IB or equivalent (UG)","IELTS 6.5 (no band < 6.0) / TOEFL / PTE","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Computer Science",l:"Bachelor"},{n:"Engineering (Hons)",l:"Bachelor"},{n:"Commerce",l:"Bachelor"},{n:"Data Science & Decisions",l:"Bachelor"}],web:"https://www.unsw.edu.au/"},
+  {abbr:"Monash",name:"Monash University",city:"Melbourne, VIC",type:"Go8 • Public",rank:"Top 6 Australia • Top 40 World",strengths:"Largest Australian university; strong pharmacy, engineering, IT and business.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Oct–Dec (Feb) • Apr–May (Jul)",feeKRW:"AUD 44,000–52,000 / yr",feeUSD:"≈ $28,000–$34,000 / yr",lang:"English",req:["Year 12 / IB or equivalent (UG)","IELTS 6.5 (no band < 6.0) / TOEFL / PTE","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Information Technology",l:"Bachelor"},{n:"Pharmacy",l:"Bachelor"},{n:"Engineering",l:"Bachelor"},{n:"Business",l:"Bachelor"}],web:"https://www.monash.edu/"},
+  {abbr:"UQ",name:"University of Queensland",city:"Brisbane, QLD",type:"Go8 • Public",rank:"Top 6 Australia • Top 50 World",strengths:"Research powerhouse in Brisbane; strong sciences, engineering and business.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Oct–Dec (Feb) • Apr–May (Jul)",feeKRW:"AUD 43,000–50,000 / yr",feeUSD:"≈ $28,000–$32,000 / yr",lang:"English",req:["Year 12 / IB or equivalent (UG)","IELTS 6.5 (no band < 6.0) / TOEFL / PTE","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Computer Science",l:"Bachelor"},{n:"Engineering (Hons)",l:"Bachelor"},{n:"Business Management",l:"Bachelor"},{n:"Data Science",l:"Master"}],web:"https://www.uq.edu.au/"},
+  {abbr:"ANU",name:"Australian National University",city:"Canberra, ACT",type:"Go8 • Public",rank:"Top research • Top 35 World",strengths:"National university in Canberra; outstanding in politics, science and research.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Oct–Dec (Feb) • Apr–May (Jul)",feeKRW:"AUD 47,000–53,000 / yr",feeUSD:"≈ $30,000–$34,000 / yr",lang:"English",req:["Year 12 / IB or equivalent (UG)","IELTS 6.5 (no band < 6.0) / TOEFL / PTE","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Computing",l:"Bachelor"},{n:"Politics & International Relations",l:"Bachelor"},{n:"Finance",l:"Master"},{n:"Engineering",l:"Master"}],web:"https://www.anu.edu.au/"},
+  {abbr:"UWA",name:"University of Western Australia",city:"Perth, WA",type:"Go8 • Public",rank:"Top 10 Australia • Top 80 World",strengths:"Leading Go8 university in Perth; strong in sciences, mining and engineering.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Oct–Dec (Feb) • Apr–May (Jul)",feeKRW:"AUD 40,000–48,000 / yr",feeUSD:"≈ $26,000–$31,000 / yr",lang:"English",req:["Year 12 / IB or equivalent (UG)","IELTS 6.5 (no band < 6.0) / TOEFL / PTE","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Computer Science",l:"Bachelor"},{n:"Engineering",l:"Master"},{n:"Commerce",l:"Bachelor"},{n:"Data Science",l:"Master"}],web:"https://www.uwa.edu.au/"},
+  {abbr:"Adel",name:"University of Adelaide",city:"Adelaide, SA",type:"Go8 • Public",rank:"Top 10 Australia • Top 90 World",strengths:"Go8 university in affordable Adelaide; strong wine, engineering and health sciences.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Oct–Dec (Feb) • Apr–May (Jul)",feeKRW:"AUD 40,000–48,000 / yr",feeUSD:"≈ $26,000–$31,000 / yr",lang:"English",req:["Year 12 / IB or equivalent (UG)","IELTS 6.5 (no band < 6.0) / TOEFL / PTE","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Computer Science",l:"Bachelor"},{n:"Engineering",l:"Bachelor"},{n:"Business",l:"Master"},{n:"Health Sciences",l:"Bachelor"}],web:"https://www.adelaide.edu.au/"},
+  {abbr:"UTS",name:"University of Technology Sydney",city:"Sydney, NSW",type:"Public",rank:"Top young university",strengths:"Practice-oriented Sydney university with strong IT, engineering and design.",intakes:"February (Autumn) & July (Spring)",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 40,000–47,000 / yr",feeUSD:"≈ $26,000–$30,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.5 (writing 6.0) / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Information Technology",l:"Bachelor"},{n:"Engineering",l:"Bachelor"},{n:"Business",l:"Bachelor"},{n:"Design",l:"Bachelor"}],web:"https://www.uts.edu.au/"},
+  {abbr:"RMIT",name:"RMIT University",city:"Melbourne, VIC",type:"Public",rank:"Top for design & tech",strengths:"Global leader in art, design, architecture and applied technology.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 38,000–46,000 / yr",feeUSD:"≈ $25,000–$30,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.5 (no band < 6.0) / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Information Technology",l:"Bachelor"},{n:"Design",l:"Bachelor"},{n:"Engineering",l:"Bachelor"},{n:"Business",l:"Bachelor"}],web:"https://www.rmit.edu.au/"},
+  {abbr:"Macq",name:"Macquarie University",city:"Sydney, NSW",type:"Public",rank:"Strong business & science",strengths:"Sydney university known for actuarial studies, business and cognitive science.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 40,000–47,000 / yr",feeUSD:"≈ $26,000–$30,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.5 (no band < 6.0) / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Actuarial Studies",l:"Bachelor"},{n:"Information Technology",l:"Bachelor"},{n:"Commerce",l:"Bachelor"},{n:"Cyber Security",l:"Master"}],web:"https://www.mq.edu.au/"},
+  {abbr:"Deakin",name:"Deakin University",city:"Melbourne/Geelong, VIC",type:"Public",rank:"Top for student experience",strengths:"Innovative Victorian university with strong nursing, IT and sport science.",intakes:"March (T1) & July (T2)",start:"Early March / July",deadlines:"Dec–Jan (T1) • May (T2)",feeKRW:"AUD 36,000–45,000 / yr",feeUSD:"≈ $23,000–$29,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.0–6.5 / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Information Technology",l:"Bachelor"},{n:"Nursing",l:"Bachelor"},{n:"Commerce",l:"Bachelor"},{n:"Cyber Security",l:"Bachelor"}],web:"https://www.deakin.edu.au/"},
+  {abbr:"QUT",name:"Queensland University of Technology",city:"Brisbane, QLD",type:"Public",rank:"'University for the real world'",strengths:"Brisbane university strong in business, IT, creative industries and health.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 36,000–44,000 / yr",feeUSD:"≈ $23,000–$28,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.5 (no band < 6.0) / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Information Technology",l:"Bachelor"},{n:"Business",l:"Bachelor"},{n:"Engineering",l:"Bachelor"},{n:"Nursing",l:"Bachelor"}],web:"https://www.qut.edu.au/"},
+  {abbr:"Griff",name:"Griffith University",city:"Gold Coast/Brisbane, QLD",type:"Public",rank:"Strong health & environment",strengths:"Queensland university known for health, environment, hospitality and music.",intakes:"February (T1) & July (T2)",start:"Late Feb / Late July",deadlines:"Nov–Dec (T1) • May (T2)",feeKRW:"AUD 34,000–43,000 / yr",feeUSD:"≈ $22,000–$28,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.5 (no band < 6.0) / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Information Technology",l:"Bachelor"},{n:"Nursing",l:"Bachelor"},{n:"Hospitality & Tourism",l:"Bachelor"},{n:"Engineering",l:"Bachelor"}],web:"https://www.griffith.edu.au/"},
+  {abbr:"Curtin",name:"Curtin University",city:"Perth, WA",type:"Public",rank:"Largest in WA",strengths:"Perth university strong in mining, engineering, business and health sciences.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 34,000–43,000 / yr",feeUSD:"≈ $22,000–$28,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.5 (no band < 6.0) / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Mining Engineering",l:"Bachelor"},{n:"Information Technology",l:"Bachelor"},{n:"Commerce",l:"Bachelor"},{n:"Nursing",l:"Bachelor"}],web:"https://www.curtin.edu.au/"},
+  {abbr:"LaTrobe",name:"La Trobe University",city:"Melbourne, VIC",type:"Public",rank:"Strong health & science",strengths:"Victorian university known for health sciences, biotechnology and business.",intakes:"March & July (some Nov)",start:"Early March / July",deadlines:"Dec–Jan (Mar) • May (Jul)",feeKRW:"AUD 34,000–42,000 / yr",feeUSD:"≈ $22,000–$27,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.0–6.5 / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Nursing",l:"Bachelor"},{n:"Information Technology",l:"Bachelor"},{n:"Business",l:"Bachelor"},{n:"Biotechnology",l:"Bachelor"}],web:"https://www.latrobe.edu.au/"},
+  {abbr:"UoW",name:"University of Wollongong",city:"Wollongong, NSW",type:"Public",rank:"Top for graduate outcomes",strengths:"Coastal NSW university strong in engineering, IT and nursing with great support.",intakes:"February (Autumn) & July (Spring)",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 33,000–42,000 / yr",feeUSD:"≈ $21,000–$27,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.0–6.5 / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Computer Science",l:"Bachelor"},{n:"Engineering",l:"Bachelor"},{n:"Nursing",l:"Bachelor"},{n:"Business",l:"Bachelor"}],web:"https://www.uow.edu.au/"},
+  {abbr:"Newc",name:"University of Newcastle",city:"Newcastle, NSW",type:"Public",rank:"Strong medicine & engineering",strengths:"NSW university recognised for medicine, engineering and renewable energy research.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 33,000–41,000 / yr",feeUSD:"≈ $21,000–$27,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.0–6.5 / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Engineering",l:"Bachelor"},{n:"Information Technology",l:"Bachelor"},{n:"Nursing",l:"Bachelor"},{n:"Business",l:"Bachelor"}],web:"https://www.newcastle.edu.au/"},
+  {abbr:"WSU",name:"Western Sydney University",city:"Sydney, NSW",type:"Public",rank:"Top young & inclusive",strengths:"Multi-campus Sydney university strong in nursing, business and IT.",intakes:"February (Autumn) & July (Spring)",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 32,000–40,000 / yr",feeUSD:"≈ $21,000–$26,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.5 (no band < 6.0) / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Nursing",l:"Bachelor"},{n:"Information & Comms Tech",l:"Bachelor"},{n:"Business",l:"Bachelor"},{n:"Engineering",l:"Bachelor"}],web:"https://www.westernsydney.edu.au/"},
+  {abbr:"Flin",name:"Flinders University",city:"Adelaide, SA",type:"Public",rank:"Strong health & social sci.",strengths:"Adelaide university known for medicine, nursing and social work.",intakes:"March & July",start:"Early March / July",deadlines:"Dec–Jan (Mar) • May (Jul)",feeKRW:"AUD 33,000–41,000 / yr",feeUSD:"≈ $21,000–$27,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.0–6.5 / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Nursing",l:"Bachelor"},{n:"Information Technology",l:"Bachelor"},{n:"Business",l:"Bachelor"},{n:"Engineering",l:"Bachelor"}],web:"https://www.flinders.edu.au/"},
+  {abbr:"UTas",name:"University of Tasmania",city:"Hobart, TAS",type:"Public",rank:"Regional + lower cost",strengths:"Tasmania's university; affordable, strong marine science, and regional migration benefits.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 32,000–39,000 / yr",feeUSD:"≈ $21,000–$25,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.0–6.5 / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Marine & Antarctic Science",l:"Bachelor"},{n:"Information Technology",l:"Bachelor"},{n:"Nursing",l:"Bachelor"},{n:"Business",l:"Bachelor"}],web:"https://www.utas.edu.au/"},
+  {abbr:"JCU",name:"James Cook University",city:"Townsville/Cairns, QLD",type:"Public",rank:"#1 tropical & marine",strengths:"Tropical north Queensland university; world-leading marine biology and regional status.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 32,000–40,000 / yr",feeUSD:"≈ $21,000–$26,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.0–6.5 / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Marine Biology",l:"Bachelor"},{n:"Nursing",l:"Bachelor"},{n:"Information Technology",l:"Bachelor"},{n:"Business",l:"Bachelor"}],web:"https://www.jcu.edu.au/"},
+  {abbr:"Swin",name:"Swinburne University of Technology",city:"Melbourne, VIC",type:"Public",rank:"Industry & tech focus",strengths:"Melbourne tech university strong in engineering, IT, design and aviation.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 34,000–42,000 / yr",feeUSD:"≈ $22,000–$27,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.0–6.5 / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Information Technology",l:"Bachelor"},{n:"Engineering",l:"Bachelor"},{n:"Aviation",l:"Bachelor"},{n:"Design",l:"Bachelor"}],web:"https://www.swinburne.edu.au/"},
+  {abbr:"Bond",name:"Bond University",city:"Gold Coast, QLD",type:"Private",rank:"Top private • fast-track",strengths:"Australia's leading private university; 3-semester year enables faster degrees.",intakes:"January, May & September",start:"Jan / May / Sep",deadlines:"~1–2 months before each semester",feeKRW:"AUD 40,000–55,000 / yr",feeUSD:"≈ $26,000–$36,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.5 (no band < 6.0) / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Business",l:"Bachelor"},{n:"Law",l:"Bachelor"},{n:"Information Technology",l:"Bachelor"},{n:"Health Sciences",l:"Bachelor"}],web:"https://bond.edu.au/"},
+  {abbr:"UniSA",name:"University of South Australia",city:"Adelaide, SA",type:"Public",rank:"Top young university",strengths:"Career-focused Adelaide university strong in business, IT, nursing and engineering.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 34,000–42,000 / yr",feeUSD:"≈ $22,000–$27,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.5 (no band < 6.0) / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Information Technology",l:"Bachelor"},{n:"Nursing",l:"Bachelor"},{n:"Business",l:"Bachelor"},{n:"Engineering",l:"Bachelor"}],web:"https://www.unisa.edu.au/"},
+  {abbr:"UC",name:"University of Canberra",city:"Canberra, ACT",type:"Public",rank:"Strong graduate employment",strengths:"Canberra university known for health, education, media and public administration.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 32,000–40,000 / yr",feeUSD:"≈ $21,000–$26,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.0–6.5 / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Nursing",l:"Bachelor"},{n:"Information Technology",l:"Bachelor"},{n:"Education",l:"Bachelor"},{n:"Business",l:"Bachelor"}],web:"https://www.canberra.edu.au/"},
+  {abbr:"CDU",name:"Charles Darwin University",city:"Darwin, NT",type:"Public",rank:"Regional • migration friendly",strengths:"Northern Territory university; regional status offers extra post-study and migration points.",intakes:"February & July",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 30,000–38,000 / yr",feeUSD:"≈ $20,000–$25,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.0–6.5 / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Nursing",l:"Bachelor"},{n:"Information Technology",l:"Bachelor"},{n:"Engineering",l:"Bachelor"},{n:"Business",l:"Bachelor"}],web:"https://www.cdu.edu.au/"},
+  {abbr:"VU",name:"Victoria University",city:"Melbourne, VIC",type:"Public",rank:"Block Model teaching",strengths:"Melbourne university famous for the 'Block Model' (one subject at a time) and sport science.",intakes:"February & July (block intakes)",start:"Late Feb / Late July",deadlines:"Nov–Dec (Feb) • May (Jul)",feeKRW:"AUD 30,000–38,000 / yr",feeUSD:"≈ $20,000–$25,000 / yr",lang:"English",req:["Year 12 / equivalent (UG)","IELTS 6.0–6.5 / PTE / TOEFL","Confirmation of Enrolment (CoE)","Genuine Student (GS) statement","Proof of funds + OSHC"],courses:[{n:"Information Technology",l:"Bachelor"},{n:"Sport Science",l:"Bachelor"},{n:"Business",l:"Bachelor"},{n:"Nursing",l:"Bachelor"}],web:"https://www.vu.edu.au/"}
 ];
 
 var SERVICES = [
@@ -932,7 +1403,7 @@ function svg(p,sw){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentC
 /* =========================================================
    ROUTING
    ========================================================= */
-var ROUTES=["home","korea","australia","services","book","contact"];
+var ROUTES=["home","korea","australia","services","book","contact","currency","ielts","topik"];
 function go(route,push){
   if(push===undefined)push=true;
   if(ROUTES.indexOf(route)<0)route="home";
@@ -990,26 +1461,8 @@ function buildCityChips(){
   var chips=box.querySelectorAll(".chip");
   for(var c=0;c<chips.length;c++){chips[c].onclick=function(){for(var x=0;x<chips.length;x++)chips[x].classList.remove("active");this.classList.add("active");activeCity=this.getAttribute("data-city");renderUnis();};}
 }
-function openDetail(i){
-  var u=UNIS[i];
-  var courses=u.courses.map(function(c){return '<div class="citem"><span>'+c.n+'</span><span class="lv">'+c.l+'</span></div>';}).join("");
-  var reqs=u.req.map(function(r){return '<li>'+svg('<path d="m20 6-11 11-5-5"/>',2.5)+r+'</li>';}).join("");
-  document.getElementById("detailContent").innerHTML=
-    '<div class="mh"><div class="tags"><span class="tg rank">★ '+u.rank+'</span><span class="tg">'+u.type+'</span></div>'
-    +'<h2 style="margin-top:10px">'+u.name+'</h2><div class="loc">📍 '+u.city+', South Korea &nbsp;•&nbsp; <a href="'+u.web+'" target="_blank" rel="noopener" style="color:var(--brand-2)">Official site ↗</a></div></div>'
-    +'<div class="mb"><p class="muted">'+u.strengths+'</p>'
-    +'<div class="dgrid"><div class="dcell"><span>Intakes</span><b>'+u.intakes+'</b></div>'
-    +'<div class="dcell"><span>Semester Start</span><b>'+u.start+'</b></div>'
-    +'<div class="dcell"><span>Application Deadlines</span><b>'+u.deadlines+'</b></div>'
-    +'<div class="dcell"><span>Language</span><b>'+u.lang+'</b></div>'
-    +'<div class="dcell"><span>Tuition (intl.)</span><b>'+u.feeKRW+'</b></div>'
-    +'<div class="dcell"><span>Approx. USD</span><b>'+u.feeUSD+'</b></div></div>'
-    +'<h4>🎓 Popular Courses</h4><div class="clist">'+courses+'</div>'
-    +'<h4>📋 Admission Requirements</h4><ul class="rlist">'+reqs+'</ul>'
-    +'<div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap"><button class="btn btn-accent" onclick="closeDetail();go(\'book\')">📅 Book a Meeting About '+u.abbr+'</button>'
-    +'<a class="btn btn-ghost" href="'+u.web+'" target="_blank" rel="noopener">Visit Website ↗</a></div></div>';
-  document.getElementById("detailModal").classList.add("open");document.body.style.overflow="hidden";
-}
+function openDetail(i){ showDetail(UNIS[i],"South Korea","kr"); }
+function openAus(i){ showDetail(AUS_UNIS[i],"Australia","au"); }
 function closeDetail(){document.getElementById("detailModal").classList.remove("open");document.body.style.overflow="";}
 
 /* =========================================================
@@ -1164,5 +1617,322 @@ buildCityChips();renderUnis();renderServices();
 go((location.hash||"#home").slice(1),false);
 window.addEventListener("load",function(){setTimeout(function(){document.getElementById("loader").classList.add("hidden");reveal();counters();},2000);});
 </script>
+<script>
+/* =========================================================
+   PART 2 — auth, currency, charts, Australia, language nav
+   ========================================================= */
+/* ---- Supabase config (URL set; paste your anon public key) ---- */
+var SB_URL="https://hjuedjbqbmikawcqvpek.supabase.co";
+var SB_ANON=""; /* <-- paste your Supabase anon/public key here to enable real sign-in */
+var sb=(window.supabase&&SB_ANON)?window.supabase.createClient(SB_URL,SB_ANON):null;
+
+/* ---- helpers ---- */
+function $(id){return document.getElementById(id);}
+function fmt(n,d){return Number(n).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});}
+
+/* =========================================================
+   NAV dropdown + account menu + TOC jump
+   ========================================================= */
+function toggleDrop(e){e.preventDefault();$("resDrop").classList.toggle("open");}
+document.addEventListener("click",function(e){
+  if(!e.target.closest("#resDrop"))$("resDrop")&&$("resDrop").classList.remove("open");
+  if(!e.target.closest("#acctWrap")){var m=$("acctMenu");if(m)m.classList.remove("open");}
+});
+function jump(id){
+  var el=$(id);if(!el)return;
+  $("links").classList.remove("open");
+  var y=el.getBoundingClientRect().top+window.pageYOffset-90;
+  window.scrollTo({top:y,behavior:"smooth"});
+}
+
+/* =========================================================
+   UNIVERSITY DETAIL with charts + scholarships (KR & AU)
+   ========================================================= */
+function donutGrad(segs){var acc=0,p=[];segs.forEach(function(s){p.push(s[2]+" "+acc+"% "+(acc+s[1])+"%");acc+=s[1];});return "conic-gradient("+p.join(",")+")";}
+function legendHTML(segs){return segs.map(function(s){return '<div><i style="background:'+s[2]+'"></i>'+s[0]+' — '+s[1]+'%</div>';}).join("");}
+function barsHTML(rows){return rows.map(function(r){return '<div class="bar-row"><div class="lab"><span>'+r[0]+'</span><span>'+r[1]+'</span></div><div class="bar-track"><div class="bar-fill" data-w="'+r[2]+'"></div></div></div>';}).join("");}
+
+function showDetail(u,countryLabel,kind){
+  var courses=u.courses.map(function(c){return '<div class="citem"><span>'+c.n+'</span><span class="lv">'+c.l+'</span></div>';}).join("");
+  var reqs=u.req.map(function(r){return '<li>'+svg('<path d="m20 6-11 11-5-5"/>',2.5)+r+'</li>';}).join("");
+  var budget = kind==="au"
+    ? [["Tuition",55,"#1763c7"],["Living",35,"#f59e0b"],["OSHC & Other",10,"#94a3b8"]]
+    : [["Tuition",45,"#1763c7"],["Living",38,"#f59e0b"],["Insurance & Other",17,"#94a3b8"]];
+  var gpaRows = kind==="au"
+    ? [["GPA 3.5+ / WAM 80+","20–50% tuition",50],["GPA 3.0 – 3.49","10–25% tuition",22],["GPA 2.5 – 2.99","Up to 10% / pathway",10]]
+    : [["GPA 3.7 – 4.0","Up to 100% tuition",100],["GPA 3.3 – 3.69","50–70% tuition",60],["GPA 3.0 – 3.29","30–50% tuition",40],["GPA 2.5 – 2.99","20–30% tuition",25]];
+  var langTable = kind==="au"
+    ? '<table class="stable"><thead><tr><th>IELTS / English</th><th>Benefit</th></tr></thead><tbody>'
+      +'<tr><td>IELTS 6.5+ (no band &lt;6.0)</td><td><b>Direct entry</b> — no pathway/ELICOS fees</td></tr>'
+      +'<tr><td>IELTS 6.0</td><td>Entry to many courses; some need a short bridging program</td></tr>'
+      +'<tr><td>IELTS 5.5</td><td>Foundation / English pathway first</td></tr></tbody></table>'
+    : '<table class="stable"><thead><tr><th>Language Score</th><th>Scholarship Benefit</th></tr></thead><tbody>'
+      +'<tr><td>TOPIK Level 5–6</td><td><b>+20–30%</b> tuition (Korean-track merit)</td></tr>'
+      +'<tr><td>TOPIK Level 4</td><td><b>+10–20%</b> tuition</td></tr>'
+      +'<tr><td>TOPIK Level 3</td><td>Meets admission; small language award at some unis</td></tr>'
+      +'<tr><td>IELTS 6.5+ / TOEFL 90+</td><td>Eligible for English-track merit scholarships</td></tr></tbody></table>';
+  var contNote = kind==="au"
+    ? "Many Australian merit scholarships are applied automatically on your offer and continue each year if you maintain satisfactory academic progress (typically across the 3–4 year course)."
+    : "Scholarships are usually reviewed each semester — maintain the required GPA every term to keep your award for the full course (≈4 years). Drop below the threshold and it may be reduced.";
+
+  $("detailContent").innerHTML=
+    '<div class="mh"><div class="tags"><span class="tg rank">★ '+u.rank+'</span><span class="tg">'+u.type+'</span></div>'
+    +'<h2 style="margin-top:10px">'+u.name+'</h2><div class="loc">📍 '+u.city+', '+countryLabel+' &nbsp;•&nbsp; <a href="'+u.web+'" target="_blank" rel="noopener" style="color:var(--brand-2)">Official site ↗</a></div></div>'
+    +'<div class="mb"><p class="muted">'+u.strengths+'</p>'
+    +'<div class="dgrid"><div class="dcell"><span>Intakes</span><b>'+u.intakes+'</b></div>'
+    +'<div class="dcell"><span>Semester Start</span><b>'+u.start+'</b></div>'
+    +'<div class="dcell"><span>Application Deadlines</span><b>'+u.deadlines+'</b></div>'
+    +'<div class="dcell"><span>Language</span><b>'+u.lang+'</b></div>'
+    +'<div class="dcell"><span>Tuition (intl.)</span><b>'+u.feeKRW+'</b></div>'
+    +'<div class="dcell"><span>Approx. USD</span><b>'+u.feeUSD+'</b></div></div>'
+    +'<h4>🎓 Popular Courses</h4><div class="clist">'+courses+'</div>'
+    +'<h4>📊 Cost & Scholarship Overview</h4>'
+    +'<div class="chart-wrap">'
+      +'<div class="chart-box"><h5>Indicative annual budget split</h5><div class="donut"><div class="ring" style="background:'+donutGrad(budget)+'"></div><div class="legend">'+legendHTML(budget)+'</div></div></div>'
+      +'<div class="chart-box"><h5>Merit scholarship by academic GPA</h5><div class="bars">'+barsHTML(gpaRows)+'</div></div>'
+    +'</div>'
+    +'<h4>🏆 Scholarship Guide (per academic record)</h4>'
+    +'<table class="stable"><thead><tr><th>Previous GPA (4.0 scale)</th><th>Typical Tuition Scholarship</th></tr></thead><tbody>'
+      +gpaRows.map(function(r){return '<tr><td>'+r[0].replace("GPA ","")+'</td><td><b>'+r[1]+'</b></td></tr>';}).join("")
+    +'</tbody></table>'
+    +'<h4>🗣️ Language-based Scholarship / Entry</h4>'+langTable
+    +'<p class="disc">'+contNote+'</p>'
+    +'<p class="disc">⚠️ Scholarship &amp; tuition figures are <b>indicative</b> and vary by department, year and applicant. Always confirm the latest details on the official university website or with our advisors.</p>'
+    +'<div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap"><button class="btn btn-accent" onclick="closeDetail();go(\'book\')">📅 Book a Meeting About '+u.abbr+'</button>'
+    +'<a class="btn btn-ghost" href="'+u.web+'" target="_blank" rel="noopener">Visit Website ↗</a></div></div>';
+  $("detailModal").classList.add("open");document.body.style.overflow="hidden";
+  setTimeout(function(){var f=document.querySelectorAll("#detailContent .bar-fill");for(var i=0;i<f.length;i++){f[i].style.width=f[i].getAttribute("data-w")+"%";}},80);
+}
+
+/* =========================================================
+   AUSTRALIA grid
+   ========================================================= */
+var ausCity="All";
+function ausCard(u,i){
+  var c=u.courses.slice(0,3).map(function(x){return x.n;}).join(" • ");
+  return '<div class="uni" onclick="openAus('+i+')">'
+    +'<div class="top"><div class="lg">'+u.abbr+'</div><div><h3>'+u.name+'</h3><div class="loc">📍 '+u.city+'</div></div></div>'
+    +'<div class="bd"><div class="tags"><span class="tg rank">★ '+u.rank+'</span><span class="tg">'+u.type+'</span></div>'
+    +'<div class="meta"><div><span>Intakes</span>'+u.intakes+'</div><div><span>Language</span>'+u.lang+'</div></div>'
+    +'<p class="muted" style="margin-top:12px;font-size:.86rem">'+c+' …</p></div>'
+    +'<div class="ft"><span class="fee">'+u.feeKRW+'</span><span class="btn btn-primary sm">View Details</span></div></div>';
+}
+function renderAus(){
+  var q=(($("ausSearch")||{}).value||"").toLowerCase().trim();
+  var out="",n=0;
+  for(var i=0;i<AUS_UNIS.length;i++){var u=AUS_UNIS[i];
+    var primary=u.city.split(",")[0];
+    var cityOk=ausCity==="All"||primary===ausCity;
+    var hay=(u.name+u.city+u.type+u.rank+u.strengths+u.courses.map(function(x){return x.n;}).join(" ")).toLowerCase();
+    if(cityOk&&(!q||hay.indexOf(q)>=0)){out+=ausCard(u,i);n++;}
+  }
+  $("ausGrid").innerHTML=n?out:'<div class="empty">No universities match your search.</div>';
+}
+function buildAusChips(){
+  var seen={},cities=["All"];for(var i=0;i<AUS_UNIS.length;i++){var c=AUS_UNIS[i].city.split(",")[0];if(!seen[c]){seen[c]=1;cities.push(c);}}
+  var html="";for(var k=0;k<cities.length;k++){html+='<div class="chip'+(cities[k]==="All"?" active":"")+'" data-city="'+cities[k]+'">'+(cities[k]==="All"?"All Cities":cities[k])+'</div>';}
+  var box=$("ausChips");box.innerHTML=html;
+  var chips=box.querySelectorAll(".chip");
+  for(var c2=0;c2<chips.length;c2++){chips[c2].onclick=function(){for(var x=0;x<chips.length;x++)chips[x].classList.remove("active");this.classList.add("active");ausCity=this.getAttribute("data-city");renderAus();};}
+}
+
+/* =========================================================
+   CURRENCY — live rates
+   ========================================================= */
+var FX=null,fxTimer=null;
+function fetchRates(){
+  var urls=["https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json",
+            "https://latest.currency-api.pages.dev/v1/currencies/usd.json"];
+  function tryUrl(k){
+    return fetch(urls[k]).then(function(r){if(!r.ok)throw 0;return r.json();})
+      .then(function(d){var per=d.usd||d.USD;per.usd=1;return per;})
+      .catch(function(){if(k+1<urls.length)return tryUrl(k+1);throw 0;});
+  }
+  return tryUrl(0);
+}
+function paintRates(){
+  if(!FX)return;
+  function set(id,v){var el=$(id);if(!el)return;el.textContent="৳ "+fmt(v,v<1?4:2);el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash");}
+  set("r_USD",FX.bdt/FX.usd);
+  set("r_KRW",FX.bdt/FX.krw);
+  set("r_AUD",FX.bdt/FX.aud);
+  set("r_CAD",FX.bdt/FX.cad);
+  var t=new Date();$("rateTime").textContent="• updated "+t.toLocaleTimeString();
+  convert();
+}
+function loadRates(){
+  fetchRates().then(function(per){FX=per;paintRates();}).catch(function(){
+    var rt=$("rateTime");if(rt)rt.textContent="• live rates unavailable, retrying…";
+  });
+}
+function convert(){
+  if(!FX){$("cvOut")&&($("cvOut").textContent="Loading rates…");return;}
+  var amt=parseFloat(($("cvAmount")||{}).value)||0;
+  var from=($("cvFrom")||{}).value||"USD",to=($("cvTo")||{}).value||"BDT";
+  var usd=amt/FX[from.toLowerCase()];
+  var res=usd*FX[to.toLowerCase()];
+  $("cvOut").textContent=fmt(amt,2)+" "+from+" = "+fmt(res,res<1?4:2)+" "+to;
+}
+function startCurrency(){
+  if(!FX)loadRates();else paintRates();
+  if(!fxTimer)fxTimer=setInterval(loadRates,60000);
+}
+
+/* =========================================================
+   AUTH (Supabase) — multi-method + captcha + temp-mail block
+   ========================================================= */
+var authMode="signup",authChannel="email",capPassed=false,otpSent=false,capCode="";
+var DISPOSABLE=["temp-mail.org","tempmail.com","tempmail.net","temp-mail.io","tempmailo.com","tempmail.dev","tempinbox.com","tmpmail.org","tmpmail.net","10minutemail.com","10minutemail.net","minuteinbox.com","guerrillamail.com","guerrillamail.info","sharklasers.com","grr.la","mailinator.com","yopmail.com","throwawaymail.com","getnada.com","nada.email","trashmail.com","trashmail.de","maildrop.cc","dispostable.com","fakeinbox.com","fakemailgenerator.com","mohmal.com","mailnesia.com","emailondeck.com","moakt.com","1secmail.com","spam4.me","mailcatch.com","inboxkitten.com","burnermail.io","etempmail.com","luxusmail.org","mintemail.com","dropmail.me","tempr.email","cs.email"];
+function isDisposable(email){
+  var d=(email.split("@")[1]||"").toLowerCase().trim();
+  if(!d)return true;
+  if(DISPOSABLE.indexOf(d)>=0)return true;
+  return /(temp|10minute|guerrilla|mailinator|yopmail|throwaway|trashmail|disposable|fakemail|fakeinbox|burner|tempmail|minutemail|dropmail)/.test(d);
+}
+function validEmail(e){return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e);}
+function aMsg(t,type){var m=$("authMsg");m.className="auth-msg show "+(type||"info");m.innerHTML=t;}
+function aClear(){var m=$("authMsg");m.className="auth-msg";m.innerHTML="";}
+function openAuth(){$("authModal").classList.add("open");document.body.style.overflow="hidden";}
+function closeAuth(){$("authModal").classList.remove("open");document.body.style.overflow="";}
+function authTab(m){
+  authMode=m;capPassed=false;otpSent=false;
+  $("tabSignup").classList.toggle("active",m==="signup");
+  $("tabLogin").classList.toggle("active",m==="login");
+  $("capBox").classList.remove("show");
+  $("authPrimary").textContent = m==="signup" ? (authChannel==="phone"?"Send OTP":"Create Account") : (authChannel==="phone"?"Send OTP":"Log In");
+  $("authTitle").textContent = m==="signup" ? "Create your account" : "Welcome back";
+  aClear();
+}
+function togglePhone(){
+  authChannel = authChannel==="email" ? "phone":"email";
+  $("emailBox").style.display = authChannel==="email"?"block":"none";
+  $("phoneBox").style.display = authChannel==="phone"?"block":"none";
+  $("phoneToggle").textContent = authChannel==="email" ? "📱 Use phone number instead" : "✉️ Use email instead";
+  otpSent=false;$("otpField").style.display="none";
+  authTab(authMode);
+}
+function toggleMore(){$("authMore").classList.toggle("open");}
+function newCaptcha(){var ch="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",s="";for(var i=0;i<5;i++)s+=ch[Math.floor(Math.random()*ch.length)];capCode=s;$("capCode").textContent=s;$("capInput").value="";}
+function configNotice(){aMsg("🔧 Sign-in is built and ready. To go live, add your Supabase <b>anon key</b> (variable <code>SB_ANON</code>) and enable Google / Apple / Phone providers in your Supabase dashboard.","info");}
+
+function oauth(provider){
+  if(!sb){configNotice();return;}
+  sb.auth.signInWithOAuth({provider:provider,options:{redirectTo:location.origin+location.pathname}})
+    .then(function(r){if(r.error)aMsg(r.error.message+" — make sure the "+provider+" provider is enabled in Supabase.","err");})
+    .catch(function(e){aMsg(String(e),"err");});
+}
+function protonSignup(){
+  if(authChannel==="phone")togglePhone();
+  $("authMore").classList.remove("open");
+  $("aEmail").focus();
+  aMsg("Enter your Proton Mail address (e.g. <b>name@proton.me</b>) and a password above, then press the button.","info");
+}
+function authPrimary(){
+  aClear();
+  /* captcha gate — login only */
+  if(authMode==="login" && !capPassed){
+    if(!$("capBox").classList.contains("show")){
+      $("capBox").classList.add("show");newCaptcha();
+      $("authPrimary").textContent="Verify & Sign In";
+      aMsg("Please complete the quick captcha to sign in.","info");
+      return;
+    } else {
+      var entered=($("capInput").value||"").trim().toUpperCase();
+      if(entered!==capCode){aMsg("Captcha doesn't match. Try again.","err");newCaptcha();return;}
+      capPassed=true;$("capBox").classList.remove("show");
+    }
+  }
+  if(authChannel==="email"){
+    var email=($("aEmail").value||"").trim(),pass=($("aPass").value||"");
+    if(!validEmail(email)){aMsg("Please enter a valid email address.","err");return;}
+    if(isDisposable(email)){aMsg("⛔ Temporary / disposable emails (like temp-mail.org) are not allowed. Please use a permanent email.","err");return;}
+    if(pass.length<6){aMsg("Password must be at least 6 characters.","err");return;}
+    if(!sb){configNotice();return;}
+    busy(true);
+    if(authMode==="signup"){
+      sb.auth.signUp({email:email,password:pass}).then(function(r){busy(false);
+        if(r.error)aMsg(r.error.message,"err");
+        else aMsg("✅ Account created! Please check your inbox and confirm your email, then log in.","ok");
+      });
+    } else {
+      sb.auth.signInWithPassword({email:email,password:pass}).then(function(r){busy(false);
+        if(r.error){aMsg(r.error.message,"err");capPassed=false;}
+        else {aMsg("✅ Signed in successfully!","ok");setTimeout(closeAuth,800);}
+      });
+    }
+  } else { /* phone */
+    var phone=($("aPhone").value||"").trim();
+    if(!/^\+?[0-9]{8,15}$/.test(phone)){aMsg("Enter a valid phone number with country code, e.g. +8801XXXXXXXXX.","err");return;}
+    if(!sb){configNotice();return;}
+    if(!otpSent){
+      busy(true);
+      sb.auth.signInWithOtp({phone:phone}).then(function(r){busy(false);
+        if(r.error)aMsg(r.error.message+" — enable a Phone/SMS provider in Supabase.","err");
+        else {otpSent=true;$("otpField").style.display="block";$("authPrimary").textContent="Verify OTP";aMsg("📲 OTP sent. Enter the code we texted you.","ok");}
+      });
+    } else {
+      var token=($("aOtp").value||"").trim();
+      busy(true);
+      sb.auth.verifyOtp({phone:phone,token:token,type:"sms"}).then(function(r){busy(false);
+        if(r.error)aMsg(r.error.message,"err");
+        else {aMsg("✅ Phone verified — signed in!","ok");setTimeout(closeAuth,800);}
+      });
+    }
+  }
+}
+function busy(b){var btn=$("authPrimary");btn.disabled=b;if(b){btn.dataset.t=btn.textContent;btn.innerHTML='<span class="spin"></span> Please wait…';}else if(btn.dataset.t){btn.textContent=btn.dataset.t;}}
+
+function updateAccountUI(user){
+  if(user){
+    var email=user.email||user.phone||"Account";
+    $("authBtn").style.display="none";
+    $("acctWrap").style.display="block";
+    $("acctName").textContent=(email.split("@")[0]||"Account");
+    $("acctAv").textContent=(email[0]||"U").toUpperCase();
+    $("acctEmail").textContent=email;
+  } else {
+    $("authBtn").style.display="";
+    $("acctWrap").style.display="none";
+  }
+}
+if(sb){
+  sb.auth.getSession().then(function(r){updateAccountUI(r.data.session?r.data.session.user:null);});
+  sb.auth.onAuthStateChange(function(_e,session){updateAccountUI(session?session.user:null);});
+}
+
+/* =========================================================
+   SEARCH INDEX additions (new pages + AUS unis)
+   ========================================================= */
+SEARCH_INDEX.push({cat:"Page",title:"Currency Converter",desc:"Live USD/KRW/AUD/CAD to BDT rates",route:"currency",icon:"globe"});
+SEARCH_INDEX.push({cat:"Page",title:"IELTS Guide",desc:"Full A–Z IELTS guide: format, bands, scores",route:"ielts",icon:"book"});
+SEARCH_INDEX.push({cat:"Page",title:"TOPIK Guide",desc:"Full A–Z TOPIK guide: levels, format, scores",route:"topik",icon:"book"});
+for(var ai=0;ai<AUS_UNIS.length;ai++){var au=AUS_UNIS[ai];SEARCH_INDEX.push({cat:"University",title:au.name,desc:au.city+" • "+au.type+" • "+au.feeKRW,route:"australia",icon:"cap",key:(au.name+" "+au.city+" "+au.type+" "+au.rank+" "+au.strengths+" australia").toLowerCase()});}
+
+/* =========================================================
+   NAV hook + init
+   ========================================================= */
+var __go=go;
+go=function(r,p){__go(r,p);afterNav(r);};
+function afterNav(r){
+  $("resDrop")&&$("resDrop").classList.remove("open");
+  var am=$("acctMenu");if(am)am.classList.remove("open");
+  if(r==="currency")startCurrency();
+}
+
+$("authBtn").onclick=openAuth;
+$("acctBtn").onclick=function(){$("acctMenu").classList.toggle("open");};
+$("logoutLink").onclick=function(){if(sb)sb.auth.signOut();updateAccountUI(null);$("acctMenu").classList.remove("open");showToast("Logged out.");};
+$("refreshRates").onclick=loadRates;
+$("cvAmount").addEventListener("input",convert);
+$("cvFrom").addEventListener("change",convert);
+$("cvTo").addEventListener("change",convert);
+$("cvSwap").onclick=function(){var f=$("cvFrom"),t=$("cvTo"),tmp=f.value;f.value=t.value;t.value=tmp;convert();};
+$("ausSearch").addEventListener("input",renderAus);
+
+buildAusChips();renderAus();
+if((location.hash||"").indexOf("currency")>=0)startCurrency();
+</script>
+
+
 </body>
 </html>
