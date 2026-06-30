@@ -1621,10 +1621,11 @@ window.addEventListener("load",function(){setTimeout(function(){document.getElem
 /* =========================================================
    PART 2 — auth, currency, charts, Australia, language nav
    ========================================================= */
-/* ---- Supabase config (URL set; paste your anon public key) ---- */
-var SB_URL="https://hjuedjbqbmikawcqvpek.supabase.co";
-var SB_ANON=""; /* <-- paste your Supabase anon/public key here to enable real sign-in */
-var sb=(window.supabase&&SB_ANON)?window.supabase.createClient(SB_URL,SB_ANON):null;
+/* ---- Supabase config ---- */
+var SB_URL="https://zwttmhnuzkfgfesswbxp.supabase.co"; /* TODO: confirm this matches your project's URL (Settings → Data API → Project URL) */
+var SB_ANON="sb_publishable_XJ4yCA5g2uh6vjdxvHLHWQ_MkRhE-_N"; /* publishable key */
+var sb=null;
+try{ if(window.supabase&&SB_ANON){ sb=window.supabase.createClient(SB_URL,SB_ANON); } }catch(e){ console.warn("Supabase init failed:",e); }
 
 /* ---- helpers ---- */
 function $(id){return document.getElementById(id);}
