@@ -536,15 +536,21 @@ footer a:hover{color:var(--accent-2)}
 /* ===== overflow guard ===== */
 html{overflow-x:hidden}
 
-/* ===== university photo gallery ===== */
-.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
-.photo{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:3/2;background:linear-gradient(135deg,var(--bg-soft-2),var(--bg-soft));border:1px solid var(--line);display:grid;place-items:center}
-.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:.45s}
-.photo.show img{opacity:1}
-.photo .pv{position:relative;z-index:2;font-size:.74rem;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 11px;border-radius:8px;cursor:pointer;transition:.2s}
-.photo .pv:hover{background:var(--brand-2);color:#fff;border-color:var(--brand-2)}
-.photo.show .pv{display:none}
-.photo .pcap{position:absolute;bottom:6px;left:6px;z-index:2;font-size:.64rem;background:rgba(0,0,0,.6);color:#fff;padding:2px 7px;border-radius:6px}
+/* ===== university photo gallery (slider/carousel) ===== */
+.gallery{position:relative;width:100%;border-radius:14px;overflow:hidden;margin-top:8px;background:var(--bg-soft);border:1px solid var(--line)}
+.gslider{display:flex;transition:transform .45s cubic-bezier(.2,.7,.3,1)}
+.gslide{min-width:100%;aspect-ratio:16/9;position:relative;overflow:hidden}
+.gslide img{width:100%;height:100%;object-fit:cover;display:block}
+.gslide .pcap{position:absolute;bottom:12px;left:12px;font-size:.78rem;background:rgba(0,0,0,.65);color:#fff;padding:5px 12px;border-radius:8px;z-index:2}
+.garr{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.88);color:var(--brand);box-shadow:0 6px 18px rgba(0,0,0,.25);cursor:pointer;display:grid;place-items:center;z-index:4;transition:.25s;font-size:1.3rem;font-weight:700}
+html[data-theme="dark"] .garr{background:rgba(18,29,54,.88);color:#fff}
+.garr:hover{transform:translateY(-50%) scale(1.14);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.garr.gl{left:12px}
+.garr.gr{right:12px}
+.gdots{display:flex;justify-content:center;gap:7px;padding:10px 0}
+.gdot{width:9px;height:9px;border-radius:50%;background:var(--line);transition:.22s;cursor:pointer}
+.gdot.on{background:var(--brand-2);transform:scale(1.35)}
+.gcount{position:absolute;top:12px;right:12px;font-size:.74rem;background:rgba(0,0,0,.6);color:#fff;padding:4px 10px;border-radius:8px;z-index:3;font-weight:600}
 
 /* ===== expandable sections (view more / housing) ===== */
 .exp{display:none;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:12px;background:var(--bg-soft);animation:vin .35s}
@@ -566,7 +572,6 @@ html{overflow-x:hidden}
 .house .himg{margin-top:10px;display:none}
 .house .himg.show{display:block;animation:vin .3s}
 .house .himg img{width:100%;max-height:230px;object-fit:cover;border-radius:9px}
-@media(max-width:680px){.gallery{grid-template-columns:repeat(2,1fr)}}
 /* ===== LIQUID GLASS (CSS, mobile-safe with opaque fallback) ===== */
 .lg-glass{position:relative;overflow:hidden;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.5);box-shadow:0 10px 34px rgba(15,40,90,.16),inset 0 1px 0 rgba(255,255,255,.65)}
 html[data-theme="dark"] .lg-glass{background:rgba(18,29,54,.62);border-color:rgba(255,255,255,.14);box-shadow:0 10px 34px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.18)}
@@ -2039,11 +2044,45 @@ function toggleExp(id,btn){var e=$(id);var open=e.classList.toggle("open");
   if(open)setTimeout(function(){e.scrollIntoView({behavior:"smooth",block:"nearest"});},80);
 }
 function photosHTML(u){
-  var cats=["Campus","Campus","Campus","Campus","Facilities","Facilities","City Area","City Area"],cells="";
-  for(var i=0;i<cats.length;i++){var seed=encodeURIComponent((u.abbr||u.name)+"pic"+i);
-    cells+='<div class="photo"><img loading="eager" src="https://picsum.photos/seed/'+seed+'/640/420" alt="'+u.name+' '+cats[i]+'"><button class="pv" onclick="this.parentNode.classList.add(\'show\')">👁 View Image</button><span class="pcap">'+cats[i]+' '+((i%4)+1)+'</span></div>';
+  var cats=["Main Gate","Campus Building","Library","Student Life","Aerial View","Landmark"];
+  var imgs=[];
+  for(var i=0;i<6;i++){
+    imgs.push({src:"https://source.unsplash.com/1280x720/?"+encodeURIComponent(u.name+" university campus")+"&sig="+i, cap:cats[i%cats.length]+" — "+u.name});
   }
-  return '<div class="gallery">'+cells+'</div><p class="disc">Representative images (pre-loaded — tap “View Image” to reveal). For the university\'s real 4K campus photos & video tour, open its official website below.</p>';
+  var uid="gal_"+Math.random().toString(36).slice(2,8);
+  var slides=imgs.map(function(im){return '<div class="gslide"><img loading="eager" src="'+im.src+'" alt="'+im.cap+'"><span class="pcap">'+im.cap+'</span></div>';}).join("");
+  var dots=imgs.map(function(_,idx){return '<span class="gdot'+(idx===0?" on":"")+'" onclick="galTo(\''+uid+'\','+idx+')"></span>';}).join("");
+  return '<div class="gallery" id="'+uid+'">'
+    +'<div class="gcount">1 / '+imgs.length+'</div>'
+    +'<button class="garr gl" onclick="galMove(\''+uid+'\',-1)">‹</button>'
+    +'<button class="garr gr" onclick="galMove(\''+uid+'\',1)">›</button>'
+    +'<div class="gslider">'+slides+'</div>'
+    +'<div class="gdots">'+dots+'</div></div>'
+    +'<p class="disc" style="margin-top:6px">Campus images for <b>'+u.name+'</b>. Use ‹ › arrows to slide. For official photos, <a href="'+u.web+'" target="_blank" rel="noopener" style="color:var(--brand-2);font-weight:600">visit the official website ↗</a></p>';
+}
+
+/* Gallery slider navigation */
+function galMove(uid, dir){
+  var el=document.getElementById(uid); if(!el) return;
+  var slider=el.querySelector(".gslider");
+  var total=slider.children.length;
+  var curr=parseInt(el.dataset.idx||"0");
+  curr=(curr+dir+total)%total;
+  el.dataset.idx=curr;
+  slider.style.transform="translateX(-"+(curr*100)+"%)";
+  el.querySelector(".gcount").textContent=(curr+1)+" / "+total;
+  var dots=el.querySelectorAll(".gdot");
+  for(var i=0;i<dots.length;i++) dots[i].classList.toggle("on",i===curr);
+}
+function galTo(uid, idx){
+  var el=document.getElementById(uid); if(!el) return;
+  var slider=el.querySelector(".gslider");
+  var total=slider.children.length;
+  el.dataset.idx=idx;
+  slider.style.transform="translateX(-"+(idx*100)+"%)";
+  el.querySelector(".gcount").textContent=(idx+1)+" / "+total;
+  var dots=el.querySelectorAll(".gdot");
+  for(var i=0;i<dots.length;i++) dots[i].classList.toggle("on",i===idx);
 }
 function moreHTML(u,kind){
   var coursesList=u.courses.map(function(c){return c.n;}).join(", ");
